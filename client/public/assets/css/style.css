@@ -3825,10 +3825,16 @@ section:hover .section-title h2::before {
     box-shadow: none;
 }
 
+.services-area .row {
+    row-gap: 30px;
+}
+
 .services-area .services-box {
     background: #fff;
     padding-top: 30px;
     box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.10);
+    height: 100%;
+    margin-bottom: 0;
 }
 
 .services-box .services-content2 {
