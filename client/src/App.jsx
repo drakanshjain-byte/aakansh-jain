@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 // Public pages
 import Home from './pages/Home.jsx';
@@ -26,7 +27,9 @@ import Submissions from './admin/pages/Submissions.jsx';
 
 export default function App() {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
       {/* Public site */}
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
@@ -59,5 +62,6 @@ export default function App() {
 
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   );
 }

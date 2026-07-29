@@ -8,15 +8,11 @@ import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
 
 export default function Services() {
   const [services, setServices] = useState([]);
-  const [faqs, setFaqs] = useState([]);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    Promise.all([api.get('/services'), api.get('/faq-items?page=services')])
-      .then(([s, f]) => {
-        setServices(s.data.data);
-        setFaqs(f.data.data);
-      })
+    api.get('/services')
+      .then((s) => setServices(s.data.data))
       .finally(() => setReady(true));
   }, []);
 
@@ -57,33 +53,6 @@ export default function Services() {
         </div>
       </section>
 
-      {faqs.length > 0 && (
-        <section className="faq-area faq-area-2 pb-150 p-relative fix">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-lg-6">
-                <div className="section-title text-center mb-50">
-                  <h2 className="text-anime-style-3">Frequently Asked Questions</h2>
-                </div>
-              </div>
-            </div>
-            <div className="accordion" id="servicesFaqAccordion">
-              {faqs.map((f, i) => (
-                <div className="accordion-item" key={f._id}>
-                  <h2 className="accordion-header">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#sfaq${i}`}>
-                      {f.question}
-                    </button>
-                  </h2>
-                  <div id={`sfaq${i}`} className="accordion-collapse collapse" data-bs-parent="#servicesFaqAccordion">
-                    <div className="accordion-body">{f.answer}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </Layout>
   );
 }

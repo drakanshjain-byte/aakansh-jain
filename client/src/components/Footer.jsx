@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../lib/api.js';
+import './Footer.css';
+
+// Same WhatsApp number used by the floating WhatsApp button and the Contact page.
+const WHATSAPP_LINK =
+  'https://api.whatsapp.com/send/?phone=919811171293&text&type=phone_number&app_absent=0';
 
 // Fallback for the "Quick Links" column — only used if the admin hasn't set
 // footerColumns in Site Settings. The "Our Services" column next to it is never
@@ -32,8 +37,6 @@ const DEFAULT_LEGAL_LINKS = [
 export default function Footer() {
   const [settings, setSettings] = useState(null);
   const [services, setServices] = useState([]);
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState(null);
 
   useEffect(() => {
     api.get('/site-settings').then((res) => setSettings(res.data.data)).catch(() => {});
@@ -55,23 +58,10 @@ export default function Footer() {
   const columns = [servicesColumn, quickLinksColumn];
   const socialLinks = settings?.socialLinks?.length ? settings.socialLinks : DEFAULT_SOCIAL_LINKS;
   const legalLinks = settings?.footerLegalLinks?.length ? settings.footerLegalLinks : DEFAULT_LEGAL_LINKS;
-  const newsletterHeading = settings?.newsletterHeading || 'Subscribe our Newsletter';
+  const instagramUrl = socialLinks.find((s) => s.icon?.includes('instagram'))?.url || '#';
   const contactEmail = settings?.topContactEmail || 'drakanshjain@gmail.com';
   const phone = settings?.topContactPhone || '9278479456';
   const address = settings?.topContactAddress || 'Dr. Aakansh Jain, Naja Hospital, Shivaji Nagar, Kanpur Road, Jhansi, Uttar Pradesh 284128';
-  const copyright = settings?.copyrightText || 'Copyright & Design By @Zcubethemes - 2025. All Rights Reserved';
-
-  const subscribe = async (e) => {
-    e.preventDefault();
-    setStatus('loading');
-    try {
-      await api.post('/submissions/newsletter', { email });
-      setStatus('Subscribed!');
-      setEmail('');
-    } catch (err) {
-      setStatus(err.response?.data?.message || 'Something went wrong');
-    }
-  };
 
   return (
     <footer className="footer-bg footer-p fix">
@@ -102,25 +92,17 @@ export default function Footer() {
         <div className="container">
           <div className="row">
             <div className="col-xl-4 col-lg-4 col-sm-6">
-              <div className="footer-widget mb-30">
+              <div className="footer-widget mb-30 footer-connect">
                 <div className="subricbe p-relative">
-                  <h3>{newsletterHeading}</h3>
-                  <form onSubmit={subscribe} className="contact-form mt-30 p-relative">
-                    <input
-                      type="email"
-                      id="email2"
-                      name="email2"
-                      className="header-input"
-                      placeholder="Your Email..."
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <button className="btn header-btn" type="submit" disabled={status === 'loading'}>
-                      <i className="fas fa-paper-plane"></i>
-                    </button>
-                  </form>
-                  {status && status !== 'loading' && <p className="mt-15">{status}</p>}
+                  <h3>Connect With Us</h3>
+                  <div className="footer-connect-links">
+                    <a href={instagramUrl} target="_blank" rel="noreferrer" className="footer-connect-link">
+                      <i className="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href={WHATSAPP_LINK} target="_blank" rel="noreferrer" className="footer-connect-link">
+                      <i className="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -180,8 +162,7 @@ export default function Footer() {
         <div className="copyright-wrap">
           <div className="container">
             <div className="row align-items-center">
-              <div className="col-lg-6">{copyright}</div>
-              <div className="col-lg-6 col-md-12 text-right">
+              <div className="col-lg-12 text-center">
                 <ul>
                   {legalLinks.map((l, i) => (
                     <li key={i}>

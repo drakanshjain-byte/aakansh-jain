@@ -467,6 +467,9 @@
         speed: 1000,
         slidesToShow: 3,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
         prevArrow: '<button type="button" class="slick-prev"><i class="far fa-long-arrow-left"></i></button>',
         nextArrow: '<button type="button" class="slick-next"><i class="far fa-long-arrow-right"></i></button>',
         responsive: [
