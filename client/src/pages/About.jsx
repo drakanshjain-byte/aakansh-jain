@@ -103,38 +103,6 @@ export default function About() {
             </div>
           </div>
         </section>
-
-        {/* Mission & Vision */}
-        <section className="mission-vision-area">
-          <div className="container">
-            <div className="mv-grid">
-              <div className="mv-card mission wow fadeInUp animated" data-animation="fadeInUp" data-delay=".2s">
-                <span className="mv-index">01</span>
-                <div className="mv-icon">
-                  <i className="fa-solid fa-bullseye"></i>
-                </div>
-                <div className="mv-underline"></div>
-                <h3>{about?.missionHeading || 'Our Mission'}</h3>
-                <p>
-                  {about?.missionDescription ||
-                    'To deliver exceptional care in plastic, cosmetic, and reconstructive surgery by integrating state-of-the-art techniques with compassionate, personalized service. We are dedicated to helping individuals achieve their aesthetic and functional aspirations in a safe, respectful, and professional setting.'}
-                </p>
-              </div>
-              <div className="mv-card vision wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
-                <span className="mv-index">02</span>
-                <div className="mv-icon">
-                  <i className="fa-solid fa-eye"></i>
-                </div>
-                <div className="mv-underline"></div>
-                <h3>{about?.visionHeading || 'Our Vision'}</h3>
-                <p>
-                  {about?.visionDescription ||
-                    'To be a distinguished leader in the field of plastic and cosmetic surgery, renowned for innovation, unparalleled patient satisfaction, and remarkable surgical results, while inspiring confidence and enhancing the overall well-being of every individual we serve.'}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
 
       {/* Academic Profile / Expertise / Achievements / Publications / Awards / Presentation */}

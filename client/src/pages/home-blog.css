@@ -1,0 +1,172 @@
+/* Styling for the Home page's "Latest News & Articles" carousel only. Scoped under
+   .home-blog-scope so it never touches the standalone Blog listing page or Blog
+   Details page. Same palette as the rest of the site. Slide-gutter rules target the
+   .home-blog-active slick container specifically (that class is also what
+   assets/js/main.js selects to initialize the slick carousel — see main.js). */
+
+.home-blog-scope .home-blog-active {
+  margin: 0 -15px;
+}
+
+.home-blog-scope .home-blog-active .slick-slide {
+  padding: 0 15px;
+}
+
+.home-blog-scope .home-blog-active .slick-track {
+  display: flex;
+}
+
+.home-blog-scope .home-blog-active .slick-slide > div {
+  height: 100%;
+}
+
+.home-blog-scope .home-blog-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0px 10px 33px 0px rgba(21, 21, 21, 0.06);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.home-blog-scope .home-blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 20px 45px 0px rgba(21, 21, 21, 0.12);
+}
+
+.home-blog-scope .home-blog-card-img {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #f1ebe4;
+}
+
+.home-blog-scope .home-blog-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.home-blog-scope .home-blog-card:hover .home-blog-card-img img {
+  transform: scale(1.08);
+}
+
+.home-blog-scope .home-blog-card-category {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #D96B3D;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 30px;
+}
+
+.home-blog-scope .home-blog-card-body {
+  padding: 26px 26px 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.home-blog-scope .home-blog-card-body h4 {
+  font-family: "Marcellus", serif;
+  font-size: 20px;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.home-blog-scope .home-blog-card-body h4 a {
+  color: #0A1119;
+  transition: color 0.25s ease;
+}
+
+.home-blog-scope .home-blog-card-body h4 a:hover {
+  color: #D96B3D;
+}
+
+.home-blog-scope .home-blog-card-body p {
+  color: #5B5B5B;
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+.home-blog-scope .home-blog-card-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #D96B3D;
+  width: fit-content;
+}
+
+.home-blog-scope .home-blog-card-readmore i {
+  transition: transform 0.25s ease;
+}
+
+.home-blog-scope .home-blog-card:hover .home-blog-card-readmore i {
+  transform: translateX(4px);
+}
+
+/* slick arrows */
+.home-blog-scope .home-blog-active .slick-arrow {
+  position: absolute;
+  top: -86px;
+  right: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid #EFE7DF;
+  background: #fff;
+  color: #0A1119;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.home-blog-scope .home-blog-active .slick-arrow:hover {
+  background: #D96B3D;
+  border-color: #D96B3D;
+  color: #fff;
+}
+
+.home-blog-scope .home-blog-active .slick-prev {
+  right: 58px;
+}
+
+.home-blog-scope .home-blog-active .slick-next {
+  right: 0;
+}
+
+.home-blog-scope .home-blog-carousel-wrap {
+  position: relative;
+}
+
+@media (max-width: 991px) {
+  .home-blog-scope .home-blog-active .slick-arrow {
+    top: auto;
+    bottom: -60px;
+  }
+  .home-blog-scope .home-blog-active .slick-prev {
+    left: calc(50% - 58px);
+    right: auto;
+  }
+  .home-blog-scope .home-blog-active .slick-next {
+    right: calc(50% - 58px);
+  }
+  .home-blog-scope .home-blog-carousel-wrap {
+    margin-bottom: 60px;
+  }
+}

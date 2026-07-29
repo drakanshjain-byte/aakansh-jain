@@ -4,10 +4,11 @@ import api from '../lib/api.js';
 import Layout from '../components/Layout.jsx';
 import PageMeta from '../components/PageMeta.jsx';
 import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
+import './home-blog.css';
 
 export default function Home() {
   const [data, setData] = useState({
-    slides: [], homeAbout: null, services: [], whoWeAre: null,
+    slides: [], homeAbout: null, services: [], bookingInfo: null,
     howItWork: [], bookingSection: null, testimonials: [],
     gallery: [], posts: [], settings: null, gallerySection: null,
   });
@@ -17,21 +18,21 @@ export default function Home() {
     Promise.all([
       api.get('/slides?page=home'),
       api.get('/home-about-section'),
-      api.get('/services?limit=3'),
-      api.get('/who-we-are'),
+      api.get('/services'),
+      api.get('/booking-info-section'),
       api.get('/how-it-work-steps'),
       api.get('/booking-section'),
       api.get('/testimonials'),
       api.get('/gallery-items?limit=6'),
-      api.get('/posts?limit=3'),
+      api.get('/posts'),
       api.get('/gallery-section'),
     ])
-      .then(([slides, homeAbout, services, who, how, booking, testi, gallery, posts, gallerySection]) => {
+      .then(([slides, homeAbout, services, bookingInfo, how, booking, testi, gallery, posts, gallerySection]) => {
         setData({
           slides: slides.data.data,
           homeAbout: homeAbout.data.data,
           services: services.data.data,
-          whoWeAre: who.data.data,
+          bookingInfo: bookingInfo.data.data,
           howItWork: how.data.data,
           bookingSection: booking.data.data,
           testimonials: testi.data.data,
@@ -248,9 +249,9 @@ export default function Home() {
           style={{ backgroundColor: '#FDF8F5', backgroundImage: 'url(/assets/img/bg/services-bg.png)', backgroundSize: 'cover' }}
         >
           <div className="container">
-            <div className="row align-items-center mb-50">
-              <div className="col-lg-6 col-md-12">
-                <div className="section-title center-align wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
+            <div className="row justify-content-center mb-50">
+              <div className="col-lg-7 col-md-12">
+                <div className="section-title text-center wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
                   <h5>
                     <span className="line">
                       <img src="/assets/img/bg/h-icon.png" alt="img" />
@@ -259,11 +260,6 @@ export default function Home() {
                   </h5>
                   <h2 className="text-anime-style-3">Excellence In Cosmetic Surgical Care</h2>
                 </div>
-              </div>
-              <div className="col-lg-6 col-md-12 text-right d-none d-lg-block">
-                <Link to="/services" className="btn btn2">
-                  View All service <i className="fa-light fa-arrow-right-long"></i>
-                </Link>
               </div>
             </div>
             <div className="row">
@@ -301,58 +297,100 @@ export default function Home() {
         </div>
       </section>
 
-      {/* who we are */}
+      {/* how to book: offline, online, contact form */}
       <section className="who-area p-relative fix">
         <div className="container-box pt-150 pb-150">
           <div className="container">
-            <div className="row">
-              <div className="col-lg-3 col-md-12 col-sm-12 d-none d-lg-block">
-                <div className="who-video wow fadeInLeft animated" data-animation="fadeInLeft" data-delay=".4s">
-                  <img src={data.whoWeAre?.image?.url || '/assets/img/bg/who-are-img-01.png'} alt="icon01" />
-                  <div className="play-box fade-slide top">
-                    <a href="https://www.youtube.com/watch?v=gyGsPlt06bo" className="popup-video" tabIndex="0">
-                      <img src="/assets/img/bg/play-2.png" alt="shape" />
+            <div className="row justify-content-center">
+              <div className="col-lg-7">
+                <div className="section-title text-center wow fadeInDown animated mb-50" data-animation="fadeInDown" data-delay=".4s">
+                  <h5>
+                    <span className="line">
+                      <img src="/assets/img/bg/h-icon.png" alt="img" />
+                    </span>{' '}
+                    {data.bookingInfo?.eyebrow || 'Booking Made Easy'}
+                  </h5>
+                  <h2 className="text-anime-style-3">{data.bookingInfo?.heading || 'How To Book Your Appointment'}</h2>
+                  {data.bookingInfo?.description && <p className="mt-15">{data.bookingInfo.description}</p>}
+                </div>
+              </div>
+            </div>
+            <div className="row align-items-stretch">
+              <div className="col-lg-4 col-md-6 col-sm-12 d-flex">
+                <div
+                  className="how-it-work-box wow fadeInUp animated"
+                  data-animation="fadeInUp"
+                  data-delay=".2s"
+                  style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+                >
+                  <div className="no">
+                    <i className="fa-solid fa-hospital"></i>
+                  </div>
+                  <h3>{data.bookingInfo?.offlineHeading || 'Book Offline'}</h3>
+                  <div style={{ flexGrow: 1 }}>
+                    <p className="mt-10">
+                      {data.bookingInfo?.offlineDescription ||
+                        'Prefer speaking to someone directly? Call our clinic or walk in to schedule your in-person appointment.'}
+                    </p>
+                    {data.bookingInfo?.offlineAddress && (
+                      <p className="mt-10">
+                        <i className="fa-solid fa-location-dot"></i> {data.bookingInfo.offlineAddress}
+                      </p>
+                    )}
+                  </div>
+                  <div className="sbtn mt-15" style={{ marginTop: 'auto' }}>
+                    <a href={data.bookingInfo?.offlineButtonLink || 'tel:+919278479456'} className="chevron-button">
+                      {data.bookingInfo?.offlineButtonText || 'Call Us'} <i className="fa-regular fa-arrow-right"></i>
                     </a>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6 col-md-8">
-                <div className="who-content">
-                  <div className="section-title center-align wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
-                    <h5>
-                      <span className="line">
-                        <img src="/assets/img/bg/h-icon.png" alt="img" />
-                      </span>{' '}
-                      Who we are
-                    </h5>
-                    <h2 className="text-anime-style-3">{data.whoWeAre?.heading || 'Safe Procedures, Beautiful Lasting Results'}</h2>
+              <div className="col-lg-4 col-md-6 col-sm-12 d-flex">
+                <div
+                  className="how-it-work-box wow fadeInUp animated"
+                  data-animation="fadeInUp"
+                  data-delay=".4s"
+                  style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+                >
+                  <div className="no">
+                    <i className="fa-solid fa-calendar-check"></i>
                   </div>
-                  <p>{data.whoWeAre?.description || 'Plastic surgery is a specialized branch of medicine that focuses on restoring, enhancing, or reshaping the body'}</p>
-                  <ul>
-                    {(data.whoWeAre?.features?.length
-                      ? data.whoWeAre.features
-                      : [
-                          { title: 'Transforming Faces With Precision' },
-                          { title: 'Discover Confidence Through Surgery' },
-                          { title: 'Redefine Beauty With Confidence' },
-                          { title: 'Youthful Appearance Made Possible' },
-                        ]
-                    ).map((f, i) => (
-                      <li key={i}>
-                        <i className="fa-solid fa-circle-check"></i> {f.title}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="who-btn">
-                    <Link to="/about" className="btn btn2">
-                      Read More <i className="fa-light fa-arrow-right-long"></i>
+                  <h3>{data.bookingInfo?.onlineHeading || 'Book Online'}</h3>
+                  <div style={{ flexGrow: 1 }}>
+                    <p className="mt-10">
+                      {data.bookingInfo?.onlineDescription ||
+                        'Book from anywhere, anytime. Fill in a few quick details and our team will confirm your slot.'}
+                    </p>
+                  </div>
+                  <div className="sbtn mt-15" style={{ marginTop: 'auto' }}>
+                    <Link to={data.bookingInfo?.onlineButtonLink || '/contact'} className="chevron-button">
+                      {data.bookingInfo?.onlineButtonText || 'Book Appointment'} <i className="fa-regular fa-arrow-right"></i>
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-4 col-sm-12">
-                <div className="who-img wow fadeInRight animated" data-animation="fadeInRight" data-delay=".4s">
-                  <img src={data.whoWeAre?.imageSecondary?.url || '/assets/img/bg/who-are-img-02.png'} alt="icon01" />
+              <div className="col-lg-4 col-md-6 col-sm-12 d-flex">
+                <div
+                  className="how-it-work-box wow fadeInUp animated"
+                  data-animation="fadeInUp"
+                  data-delay=".6s"
+                  style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
+                >
+                  <div className="no">
+                    <i className="fa-solid fa-comment-medical"></i>
+                  </div>
+                  <h3>{data.bookingInfo?.contactFormHeading || 'Have Questions First?'}</h3>
+                  <div style={{ flexGrow: 1 }}>
+                    <p className="mt-10">
+                      {data.bookingInfo?.contactFormDescription ||
+                        'Send us your questions through our contact form and our team will get back to you shortly.'}
+                    </p>
+                  </div>
+                  <div className="sbtn mt-15" style={{ marginTop: 'auto' }}>
+                    <Link to={data.bookingInfo?.contactFormButtonLink || '/contact'} className="chevron-button">
+                      {data.bookingInfo?.contactFormButtonText || 'Contact Us'} <i className="fa-regular fa-arrow-right"></i>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -528,11 +566,11 @@ export default function Home() {
       </div>
 
       {/* blog teaser */}
-      <section id="blog" className="blog-area p-relative fix pb-120">
+      <section id="blog" className="blog-area p-relative fix pb-120 home-blog-scope">
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-lg-6">
-              <div className="section-title text-center wow fadeInDown animated mb-50" data-animation="fadeInDown" data-delay=".4s">
+          <div className="row align-items-center mb-50">
+            <div className="col-lg-6 col-md-12">
+              <div className="section-title wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
                 <h5>
                   <span className="line">
                     <img src="/assets/img/bg/h-icon.png" alt="img" />
@@ -542,19 +580,47 @@ export default function Home() {
                 <h2 className="text-anime-style-3">Latest News &amp; Articles</h2>
               </div>
             </div>
+            <div className="col-lg-6 col-md-12 text-right d-none d-lg-block">
+              <Link to="/blog" className="btn btn2">
+                View All Articles <i className="fa-light fa-arrow-right-long"></i>
+              </Link>
+            </div>
           </div>
-          <div className="row">
-            {(data.posts?.length ? data.posts : []).map((p) => (
-              <div className="col-lg-4 col-md-6" key={p._id}>
-                <div className="blog-box mb-30">
-                  {p.coverImage?.url && <img src={p.coverImage.url} alt={p.title} style={{ width: '100%' }} />}
-                  <h4 className="mt-15">
-                    <Link to={`/blog/${p.slug}`}>{p.title}</Link>
-                  </h4>
-                  <p>{p.excerpt}</p>
-                </div>
+
+          <div className="home-blog-carousel-wrap">
+            {data.posts?.length ? (
+              <div className="home-blog-active">
+                {data.posts.map((p) => (
+                  <div key={p._id}>
+                    <div className="home-blog-card">
+                      <div className="home-blog-card-img">
+                        {p.coverImage?.url ? (
+                          <img src={p.coverImage.url} alt={p.title} />
+                        ) : (
+                          <img src="/assets/img/blog/inner_b1.jpg" alt={p.title} />
+                        )}
+                        {p.category && <span className="home-blog-card-category">{p.category}</span>}
+                      </div>
+                      <div className="home-blog-card-body">
+                        <h4>
+                          <Link to={`/blog/${p.slug}`}>{p.title}</Link>
+                        </h4>
+                        <p>{p.excerpt}</p>
+                        <Link to={`/blog/${p.slug}`} className="home-blog-card-readmore">
+                          Read More <i className="fa-regular fa-arrow-right"></i>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : null}
+          </div>
+
+          <div className="text-center mt-30 d-lg-none">
+            <Link to="/blog" className="btn btn2">
+              View All Articles <i className="fa-light fa-arrow-right-long"></i>
+            </Link>
           </div>
         </div>
       </section>

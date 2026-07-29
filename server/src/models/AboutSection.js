@@ -25,10 +25,6 @@ const aboutSectionSchema = new mongoose.Schema(
     badgeText: { type: String, default: '' },
     whoWeAreHeading: { type: String, default: '' },
     whoWeAreDescription: { type: String, default: '' },
-    missionHeading: { type: String, default: '' },
-    missionDescription: { type: String, default: '' },
-    visionHeading: { type: String, default: '' },
-    visionDescription: { type: String, default: '' },
     testimonialsHeading: { type: String, default: 'Testimonials - Happy Clients' },
     testimonialsSubheading: { type: String, default: '#1 Choice of Patients for Aesthetics & Plastic Surgery' },
     reviewPlatforms: {

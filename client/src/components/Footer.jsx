@@ -2,30 +2,19 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../lib/api.js';
 
-// Sensible fallbacks so the footer still looks right before /site-settings
-// has loaded, or if a site admin hasn't filled in a particular field yet.
-const DEFAULT_COLUMNS = [
-  {
-    links: [
-      { label: 'Face Lift', url: '/' },
-      { label: 'Nose Job', url: '/' },
-      { label: 'Liposuction', url: '/' },
-      { label: 'Brow Lift', url: '/' },
-      { label: 'Neck Lift', url: '/' },
-      { label: 'Breast Lift', url: '/' },
-    ],
-  },
-  {
-    links: [
-      { label: 'Ear Surgery', url: '/' },
-      { label: 'Botox', url: '/' },
-      { label: 'Resurfacing', url: '/' },
-      { label: 'Contouring', url: '/' },
-      { label: 'Creative', url: '/' },
-      { label: 'Makeover', url: '/' },
-    ],
-  },
-];
+// Fallback for the "Quick Links" column — only used if the admin hasn't set
+// footerColumns in Site Settings. The "Our Services" column next to it is never
+// hardcoded: it's always built from whatever services actually exist in the admin panel.
+const DEFAULT_QUICK_LINKS_COLUMN = {
+  heading: 'Quick Links',
+  links: [
+    { label: 'About Us', url: '/about' },
+    { label: 'Gallery', url: '/projects' },
+    { label: 'Blog', url: '/blog' },
+    { label: 'FAQ', url: '/faq' },
+    { label: 'Contact Us', url: '/contact' },
+  ],
+};
 
 const DEFAULT_SOCIAL_LINKS = [
   { url: '#', icon: 'fab fa-facebook-f' },
@@ -42,16 +31,28 @@ const DEFAULT_LEGAL_LINKS = [
 
 export default function Footer() {
   const [settings, setSettings] = useState(null);
+  const [services, setServices] = useState([]);
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(null);
 
   useEffect(() => {
     api.get('/site-settings').then((res) => setSettings(res.data.data)).catch(() => {});
+    api.get('/services').then((res) => setServices(res.data.data)).catch(() => {});
   }, []);
 
   const logoUrl = settings?.logoAlt?.url || settings?.logo?.url || '/assets/img/logo/f_logo.png';
   const bgImage = settings?.footerBgImage?.url;
-  const columns = settings?.footerColumns?.length ? settings.footerColumns : DEFAULT_COLUMNS;
+
+  // "Our Services" column is always generated live from the actual Services collection —
+  // whatever the admin adds/removes there is exactly what shows up here, nothing hardcoded.
+  const servicesColumn = {
+    heading: 'Our Services',
+    links: services.length
+      ? services.slice(0, 8).map((s) => ({ label: s.title, url: `/services/${s.slug}` }))
+      : [{ label: 'Add services from the admin panel', url: '/services' }],
+  };
+  const quickLinksColumn = settings?.footerColumns?.length ? settings.footerColumns[0] : DEFAULT_QUICK_LINKS_COLUMN;
+  const columns = [servicesColumn, quickLinksColumn];
   const socialLinks = settings?.socialLinks?.length ? settings.socialLinks : DEFAULT_SOCIAL_LINKS;
   const legalLinks = settings?.footerLegalLinks?.length ? settings.footerLegalLinks : DEFAULT_LEGAL_LINKS;
   const newsletterHeading = settings?.newsletterHeading || 'Subscribe our Newsletter';
