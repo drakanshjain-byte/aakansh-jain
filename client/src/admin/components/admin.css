@@ -1,13 +1,21 @@
-.admin-shell { display: flex; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif; background: #f6f5f3; color: #222; }
-.admin-sidebar { width: 260px; background: #1f1a17; color: #eee; flex-shrink: 0; padding: 20px 0; overflow-y: auto; }
+.admin-shell * { scrollbar-width: thin; scrollbar-color: #c9beb2 transparent; }
+.admin-shell *::-webkit-scrollbar { width: 8px; height: 8px; }
+.admin-shell *::-webkit-scrollbar-track { background: transparent; }
+.admin-shell *::-webkit-scrollbar-thumb { background-color: #c9beb2; border-radius: 8px; }
+.admin-shell *::-webkit-scrollbar-thumb:hover { background-color: #a9683b; }
+.admin-sidebar { scrollbar-color: #4a4038 transparent; }
+.admin-sidebar::-webkit-scrollbar-thumb { background-color: #4a4038; }
+.admin-sidebar::-webkit-scrollbar-thumb:hover { background-color: #a9683b; }
+.admin-shell { display: flex; height: 100vh; font-family: system-ui, -apple-system, sans-serif; background: #f6f5f3; color: #222; overflow: hidden; }
+.admin-sidebar { width: 260px; background: #1f1a17; color: #eee; flex-shrink: 0; padding: 20px 0; height: 100vh; overflow-y: auto; }
 .admin-brand { font-size: 20px; font-weight: 700; padding: 0 20px 20px; border-bottom: 1px solid #3a332e; margin-bottom: 10px; }
 .admin-nav-section { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: #a08f80; padding: 16px 20px 6px; }
 .admin-nav-link { display: block; padding: 8px 20px; color: #ddd; text-decoration: none; font-size: 14px; }
 .admin-nav-link:hover { background: #2c251f; }
 .admin-nav-link.active { background: #a9683b; color: #fff; }
-.admin-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
-.admin-topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: #fff; border-bottom: 1px solid #e6e1db; }
-.admin-content { padding: 24px; flex: 1; }
+.admin-main { flex: 1; display: flex; flex-direction: column; min-width: 0; height: 100vh; overflow: hidden; }
+.admin-topbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; background: #fff; border-bottom: 1px solid #e6e1db; flex-shrink: 0; }
+.admin-content { padding: 24px; flex: 1; overflow-y: auto; }
 .admin-loading { padding: 40px; text-align: center; }
 .admin-card { background: #fff; border: 1px solid #e6e1db; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
 .admin-table { width: 100%; border-collapse: collapse; background: #fff; }
