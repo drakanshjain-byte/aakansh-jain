@@ -68,7 +68,7 @@ export default function Home() {
                 <div className="col-lg-6 col-md-12">
                   <div className="slider-content s-slider-content">
                     <h5 className="fade-slide bottom">
-                      <img src="/assets/img/bg/h-icon.png" alt="img" /> {slide?.eyebrowText || 'Best In Town'}
+                      <img src="/assets/img/bg/h-icon.svg" alt="img" /> {slide?.eyebrowText || 'Best In Town'}
                     </h5>
                     <h2 className="text-anime-style-3">{slide?.headline || 'Transforming Look Changing Lives'}</h2>
                     <p className="fade-slide top">
@@ -146,7 +146,7 @@ export default function Home() {
                 <div className="cartifact-box">
                   <div className="icon">
                     <div>
-                      <img src="/assets/img/features/ab-cartficat-icon.png" alt="img" />
+                      <img src="/assets/img/features/ab-cartficat-icon.svg" alt="img" />
                     </div>
                   </div>
                   <div className="text">
@@ -165,7 +165,7 @@ export default function Home() {
                     <div className="about-title second-title pb-25">
                       <h5>
                         <span className="line">
-                          <img src="/assets/img/bg/h-icon.png" alt="img" />
+                          <img src="/assets/img/bg/h-icon.svg" alt="img" />
                         </span>{' '}
                         {data.homeAbout?.subheading || 'About Us'}
                       </h5>
@@ -192,13 +192,13 @@ export default function Home() {
                       <div className="about-btn pl-20">
                         <div>
                           <Link to={data.homeAbout?.primaryButton?.link || '/services'}>
-                            <img src="/assets/img/features/ab-icon-01.png" alt="img" />{' '}
+                            <img src="/assets/img/features/ab-icon-01.svg" alt="img" />{' '}
                             {data.homeAbout?.primaryButton?.text || 'Transfer Surgery'}
                           </Link>
                         </div>
                         <div>
                           <Link to={data.homeAbout?.secondaryButton?.link || '/contact'}>
-                            <img src="/assets/img/features/ab-icon-02.png" alt="img" />{' '}
+                            <img src="/assets/img/features/ab-icon-02.svg" alt="img" />{' '}
                             {data.homeAbout?.secondaryButton?.text || 'Support 24/7'}
                           </Link>
                         </div>
@@ -223,7 +223,7 @@ export default function Home() {
                         </div>
                         <div className="review">
                           <div className="icon">
-                            <img src="/assets/img/features/ab-icon-03.png" alt="shape" />
+                            <img src="/assets/img/features/ab-icon-03.svg" alt="shape" />
                           </div>
                           <div className="text">
                             <div className="star">
@@ -246,7 +246,7 @@ export default function Home() {
       <section className="services-area p-relative fix">
         <div
           className="container-box pt-150 pb-150"
-          style={{ backgroundColor: '#FDF8F5', backgroundImage: 'url(/assets/img/bg/services-bg.png)', backgroundSize: 'cover' }}
+          style={{ backgroundColor: '#EAF2FA', backgroundImage: 'url(/assets/img/bg/services-bg.png)', backgroundSize: 'cover' }}
         >
           <div className="container">
             <div className="row justify-content-center mb-50">
@@ -254,7 +254,7 @@ export default function Home() {
                 <div className="section-title text-center wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
                   <h5>
                     <span className="line">
-                      <img src="/assets/img/bg/h-icon.png" alt="img" />
+                      <img src="/assets/img/bg/h-icon.svg" alt="img" />
                     </span>{' '}
                     Our Services
                   </h5>
@@ -271,7 +271,7 @@ export default function Home() {
                     </div>
                     <div className="services-content">
                       <div className="icon">
-                        <img src={s?.icon || '/assets/img/icon/sr-icon-01.png'} alt="icon" />
+                        <img src={s?.icon?.url || '/assets/img/icon/sr-icon-01.svg'} alt="icon" />
                       </div>
                       <div className="row">
                         <div className="col-lg-10">
@@ -306,7 +306,7 @@ export default function Home() {
                 <div className="section-title text-center wow fadeInDown animated mb-50" data-animation="fadeInDown" data-delay=".4s">
                   <h5>
                     <span className="line">
-                      <img src="/assets/img/bg/h-icon.png" alt="img" />
+                      <img src="/assets/img/bg/h-icon.svg" alt="img" />
                     </span>{' '}
                     {data.bookingInfo?.eyebrow || 'Booking Made Easy'}
                   </h5>
@@ -407,11 +407,11 @@ export default function Home() {
                 <div className="section-title text-center wow fadeInDown animated mb-80" data-animation="fadeInDown" data-delay=".4s">
                   <h5>
                     <span className="line">
-                      <img src="/assets/img/bg/h-icon.png" alt="img" />
+                      <img src="/assets/img/bg/h-icon.svg" alt="img" />
                     </span>{' '}
                     how it works{' '}
                     <span className="line-2">
-                      <img src="/assets/img/bg/h-icon.png" alt="img" />
+                      <img src="/assets/img/bg/h-icon.svg" alt="img" />
                     </span>
                   </h5>
                   <h2 className="text-anime-style-3">Achieve Perfect Shape With Surgery</h2>
@@ -476,7 +476,7 @@ export default function Home() {
               <div className="section-title text-center wow fadeInDown animated mb-50" data-animation="fadeInDown" data-delay=".4s">
                 <h5>
                   <span className="line">
-                    <img src="/assets/img/bg/h-icon.png" alt="img" />
+                    <img src="/assets/img/bg/h-icon.svg" alt="img" />
                   </span>{' '}
                   Testimonials
                 </h5>
@@ -514,7 +514,7 @@ export default function Home() {
               <div className="section-title section-title-2 center-align p-relative">
                 <h5>
                   <span className="line">
-                    <img src="/assets/img/bg/h-icon.png" alt="img" />
+                    <img src="/assets/img/bg/h-icon.svg" alt="img" />
                   </span>{' '}
                   {data.gallerySection?.eyebrow || 'Gallery'}
                 </h5>
@@ -573,7 +573,7 @@ export default function Home() {
               <div className="section-title wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
                 <h5>
                   <span className="line">
-                    <img src="/assets/img/bg/h-icon.png" alt="img" />
+                    <img src="/assets/img/bg/h-icon.svg" alt="img" />
                   </span>{' '}
                   Our Blog
                 </h5>

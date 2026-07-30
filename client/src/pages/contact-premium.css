@@ -3,15 +3,15 @@
    flow (no absolute/negative-margin positioning), and the section carries generous
    bottom padding, so nothing can ever ride up into the footer regardless of iframe
    height, viewport width, or content length.
-   Palette matches the rest of the site: #D96B3D accent, #0A1119 ink, #FDF8F5 cream.
+   Palette matches the rest of the site: #0B5FA5 accent, #1A2733 ink, #EAF2FA cream.
    Scoped entirely under .cp-contact so it can't leak into other pages. */
 
 .cp-contact {
-  --cp-bg: #FDF8F5;
+  --cp-bg: #EAF2FA;
   --cp-card: #ffffff;
-  --cp-ink: #0A1119;
+  --cp-ink: #1A2733;
   --cp-muted: #6b6f76;
-  --cp-accent: #D96B3D;
+  --cp-accent: #0B5FA5;
   --cp-accent-soft: rgba(217, 107, 61, 0.1);
   --cp-line: rgba(10, 17, 25, 0.1);
 

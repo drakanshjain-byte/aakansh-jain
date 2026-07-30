@@ -1,11 +1,11 @@
 /* Premium "Who We Are / Mission / Vision" styling for the About page.
    Scoped under .mv-scope so it never leaks into other pages. Uses the
-   site's existing palette: #D96B3D (accent), #0A1119 (dark), #57A88E (teal), #FDF8F5 (cream). */
+   site's existing palette: #0B5FA5 (accent), #1A2733 (dark), #4FA3D9 (teal), #EAF2FA (cream). */
 
 .mv-scope .who-we-are-area {
   position: relative;
   padding: 130px 0 140px;
-  background: #FDF8F5;
+  background: #EAF2FA;
   overflow: hidden;
 }
 
@@ -36,7 +36,7 @@
   font-size: 13px;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #D96B3D;
+  color: #0B5FA5;
   font-weight: 600;
   margin-bottom: 18px;
 }
@@ -46,14 +46,14 @@
   content: '';
   width: 26px;
   height: 1px;
-  background: #D96B3D;
+  background: #0B5FA5;
   display: inline-block;
 }
 
 .mv-scope .who-we-are-inner h2 {
   font-size: 44px;
   line-height: 1.25;
-  color: #0A1119;
+  color: #1A2733;
   margin-bottom: 24px;
 }
 
@@ -67,7 +67,7 @@
 .mv-scope .mission-vision-area {
   position: relative;
   padding: 20px 0 150px;
-  background: #FDF8F5;
+  background: #EAF2FA;
 }
 
 .mv-scope .mv-grid {
@@ -127,7 +127,7 @@
   right: 28px;
   font-size: 72px;
   font-weight: 700;
-  color: #0A1119;
+  color: #1A2733;
   opacity: 0.04;
   line-height: 1;
   z-index: 0;
@@ -142,7 +142,7 @@
   justify-content: center;
   font-size: 28px;
   color: #ffffff;
-  background: linear-gradient(135deg, #D96B3D, #c85a2d);
+  background: linear-gradient(135deg, #0B5FA5, #084A7F);
   margin-bottom: 28px;
   position: relative;
   z-index: 1;
@@ -150,7 +150,7 @@
 }
 
 .mv-scope .mv-card.vision .mv-icon {
-  background: linear-gradient(135deg, #57A88E, #45907a);
+  background: linear-gradient(135deg, #4FA3D9, #0E2C4E);
 }
 
 .mv-scope .mv-card:hover .mv-icon {
@@ -159,7 +159,7 @@
 
 .mv-scope .mv-card h3 {
   font-size: 28px;
-  color: #0A1119;
+  color: #1A2733;
   margin-bottom: 16px;
   position: relative;
   z-index: 1;
@@ -178,7 +178,7 @@
   width: 46px;
   height: 3px;
   border-radius: 3px;
-  background: #D96B3D;
+  background: #0B5FA5;
   margin-bottom: 22px;
   position: relative;
   z-index: 1;
@@ -186,7 +186,7 @@
 }
 
 .mv-scope .mv-card.vision .mv-underline {
-  background: #57A88E;
+  background: #4FA3D9;
 }
 
 .mv-scope .mv-card:hover .mv-underline {
@@ -208,7 +208,7 @@
   width: 88%;
   height: 92%;
   border-radius: 16px;
-  border: 2px solid #D96B3D;
+  border: 2px solid #0B5FA5;
   background: linear-gradient(135deg, rgba(217, 107, 61, 0.08), rgba(87, 168, 142, 0.06));
   z-index: 0;
 }
@@ -257,13 +257,13 @@
   justify-content: center;
   color: #fff;
   font-size: 18px;
-  background: linear-gradient(135deg, #D96B3D, #c85a2d);
+  background: linear-gradient(135deg, #0B5FA5, #084A7F);
 }
 
 .mv-scope .about-hero-badge span {
   font-size: 14.5px;
   font-weight: 600;
-  color: #0A1119;
+  color: #1A2733;
   line-height: 1.3;
 }
 
@@ -294,7 +294,7 @@
   gap: 12px;
   padding: 14px 16px;
   border-radius: 12px;
-  background: #FDF8F5;
+  background: #EAF2FA;
   border: 1px solid rgba(217, 107, 61, 0.15);
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
@@ -313,7 +313,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #D96B3D;
+  color: #0B5FA5;
   background: rgba(217, 107, 61, 0.12);
   font-size: 15px;
 }
@@ -321,7 +321,7 @@
 .mv-scope .about-highlight-chip span {
   font-size: 14.5px;
   font-weight: 500;
-  color: #0A1119;
+  color: #1A2733;
   line-height: 1.3;
 }
 
@@ -329,7 +329,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #0A1119;
+  color: #1A2733;
   font-weight: 600;
   font-size: 15px;
   position: relative;
@@ -347,19 +347,19 @@
   bottom: 0;
   width: 100%;
   height: 1px;
-  background: #0A1119;
+  background: #1A2733;
   transform: scaleX(0.35);
   transform-origin: left;
   transition: transform 0.35s ease, background 0.35s ease;
 }
 
 .mv-scope .about-secondary-link:hover {
-  color: #D96B3D;
+  color: #0B5FA5;
 }
 
 .mv-scope .about-secondary-link:hover::after {
   transform: scaleX(1);
-  background: #D96B3D;
+  background: #0B5FA5;
 }
 
 .mv-scope .about-secondary-link:hover i {

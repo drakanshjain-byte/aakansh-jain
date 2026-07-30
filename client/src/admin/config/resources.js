@@ -31,7 +31,7 @@ export const RESOURCES = [
       { name: 'title', label: 'Title', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true },
       { name: 'shortDesc', label: 'Short Description', type: 'textarea' },
-      { name: 'icon', label: 'Icon (path or class)', type: 'text' },
+      { name: 'icon', label: 'Icon (small round image on the service card)', type: 'image' },
       { name: 'bodyContent', label: 'Full Description (HTML)', type: 'richtext' },
       { name: 'metaTitle', label: 'Meta Title', type: 'text' },
       { name: 'metaDescription', label: 'Meta Description', type: 'textarea' },

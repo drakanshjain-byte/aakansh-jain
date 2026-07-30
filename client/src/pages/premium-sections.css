@@ -1,12 +1,12 @@
 /* Premium section styles for the /about page "Testimonials - Happy Clients" block —
    driven by fields on the AboutSection singleton (testimonialsHeading, reviewPlatforms, ...).
-   Palette matches the rest of the site: #D96B3D (accent), #0A1119 (dark text), #FDF8F5 (cream).
+   Palette matches the rest of the site: #0B5FA5 (accent), #1A2733 (dark text), #EAF2FA (cream).
    Scoped to .about-testi-premium so it can't leak into other sections. */
 
 .about-testi-premium {
   position: relative;
   padding: 130px 0 140px;
-  background: #FDF8F5;
+  background: #EAF2FA;
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
 
 .about-testi-premium .atp-header h2 {
   font-size: 42px;
-  color: #D96B3D;
+  color: #0B5FA5;
 }
 
 .about-testi-premium .atp-grid {
@@ -63,7 +63,7 @@
 
 .about-testi-premium .atp-quote-footer h5 {
   margin-bottom: 8px;
-  color: #0A1119;
+  color: #1A2733;
 }
 
 .about-testi-premium .atp-stars {
@@ -90,7 +90,7 @@
 }
 
 .about-testi-premium .atp-dot.active {
-  background: #D96B3D;
+  background: #0B5FA5;
   transform: scale(1.2);
 }
 
@@ -104,7 +104,7 @@
 .about-testi-premium .atp-platforms h4 {
   font-size: 19px;
   line-height: 1.5;
-  color: #0A1119;
+  color: #1A2733;
   margin-bottom: 26px;
 }
 
@@ -135,14 +135,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #FDF8F5;
-  color: #D96B3D;
+  background: #EAF2FA;
+  color: #0B5FA5;
   font-size: 18px;
 }
 
 .about-testi-premium .atp-p-text h6 {
   margin-bottom: 4px;
-  color: #0A1119;
+  color: #1A2733;
   font-size: 16px;
 }
 
@@ -150,7 +150,7 @@
   display: inline-block;
   font-size: 13px;
   font-weight: 600;
-  color: #D96B3D;
+  color: #0B5FA5;
   border: 1px solid rgba(217, 107, 61, 0.35);
   border-radius: 50px;
   padding: 3px 14px;

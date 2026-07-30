@@ -58,7 +58,7 @@ export default function About() {
                 <div className="about-title second-title pb-25">
                   <h5>
                     <span className="line">
-                      <img src="/assets/img/bg/h-icon.png" alt="img" />
+                      <img src="/assets/img/bg/h-icon.svg" alt="img" />
                     </span>{' '}
                     {about?.subheading || 'About Us'}
                   </h5>
