@@ -49,7 +49,7 @@ export default function Blog() {
                   )}
                   {filtered.map((p) => (
                     <div className="col-md-6 mb-30" key={p._id}>
-                      <div className="blog-card">
+                      <Link to={`/blog/${p.slug}`} className="blog-card">
                         <div className="blog-card-img">
                           {p.coverImage?.url ? (
                             <img src={p.coverImage.url} alt={p.title} />
@@ -60,14 +60,14 @@ export default function Blog() {
                         </div>
                         <div className="blog-card-body">
                           <h4>
-                            <Link to={`/blog/${p.slug}`}>{p.title}</Link>
+                            <span>{p.title}</span>
                           </h4>
                           <p>{p.excerpt}</p>
-                          <Link to={`/blog/${p.slug}`} className="blog-card-readmore">
+                          <span className="blog-card-readmore">
                             Read More <i className="fa-regular fa-arrow-right"></i>
-                          </Link>
+                          </span>
                         </div>
-                      </div>
+                      </Link>
                     </div>
                   ))}
                 </div>

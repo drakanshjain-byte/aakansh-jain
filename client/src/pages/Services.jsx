@@ -28,22 +28,20 @@ export default function Services() {
           <div className="row">
             {services.map((s) => (
               <div className="col-lg-4 col-md-6 col-sm-12" key={s._id}>
-                <div className="services-box mb-30 wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
+                <Link to={`/services/${s.slug}`} className="services-box mb-30 wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                   <div className="services-icon">
                     <img src={s.image?.url || '/assets/img/bg/services-01.png'} alt={s.title} />
                   </div>
                   <div className="services-content">
-                    <h4>
-                      <Link to={`/services/${s.slug}`}>{s.title}</Link>
-                    </h4>
+                    <h4>{s.title}</h4>
                     <p>{s.shortDesc}</p>
                     <div className="sbtn">
-                      <Link to={`/services/${s.slug}`} className="chevron-button">
+                      <div className="chevron-button">
                         Read More <i className="fa-regular fa-arrow-right"></i>
-                      </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

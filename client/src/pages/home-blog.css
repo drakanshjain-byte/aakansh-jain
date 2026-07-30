@@ -29,6 +29,9 @@
   flex-direction: column;
   height: 100%;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .home-blog-scope .home-blog-card:hover {

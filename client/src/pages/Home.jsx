@@ -268,22 +268,20 @@ export default function Home() {
               </div>
             </div>
             <div className="row">
-              {(data.services?.length ? data.services : Array(3).fill(null)).map((s, i) => (
+              {(data.services?.length ? data.services.slice(0, 3) : Array(3).fill(null)).map((s, i) => (
                 <div className="col-lg-4 col-md-6 col-sm-12" key={s?._id || i}>
-                  <div className="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
+                  <Link to={s ? `/services/${s.slug}` : '/services'} className="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
                     <div className="services-icon">
                       <img src={s?.image?.url || `/assets/img/bg/services-0${(i % 3) + 1}.png`} alt="icon" />
                     </div>
                     <div className="services-content">
                       <div className="row">
                         <div className="col-lg-10">
-                          <h4>
-                            <Link to={s ? `/services/${s.slug}` : '/services'}>{s?.title || 'Facelift Rejuvenation Surgery'}</Link>
-                          </h4>
+                          <h4>{s?.title || 'Facelift Rejuvenation Surgery'}</h4>
                           <div className="sbtn">
-                            <Link to={s ? `/services/${s.slug}` : '/services'} className="chevron-button">
+                            <div className="chevron-button">
                               Read More <i className="fa-regular fa-arrow-right"></i>
-                            </Link>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -291,9 +289,14 @@ export default function Home() {
                         <img src="/assets/img/bg/left-ani-02.png" alt="an-img-01" />
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
+            </div>
+            <div className="text-center mt-40">
+              <Link to="/services" className="btn btn2">
+                View All Services <i className="fa-light fa-arrow-right-long"></i>
+              </Link>
             </div>
           </div>
         </div>
@@ -590,7 +593,7 @@ export default function Home() {
               <div className="home-blog-active">
                 {data.posts.map((p) => (
                   <div key={p._id}>
-                    <div className="home-blog-card">
+                    <Link to={`/blog/${p.slug}`} className="home-blog-card">
                       <div className="home-blog-card-img">
                         {p.coverImage?.url ? (
                           <img src={p.coverImage.url} alt={p.title} />
@@ -601,14 +604,14 @@ export default function Home() {
                       </div>
                       <div className="home-blog-card-body">
                         <h4>
-                          <Link to={`/blog/${p.slug}`}>{p.title}</Link>
+                          <span>{p.title}</span>
                         </h4>
                         <p>{p.excerpt}</p>
-                        <Link to={`/blog/${p.slug}`} className="home-blog-card-readmore">
+                        <span className="home-blog-card-readmore">
                           Read More <i className="fa-regular fa-arrow-right"></i>
-                        </Link>
+                        </span>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>

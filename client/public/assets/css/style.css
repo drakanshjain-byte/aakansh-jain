@@ -529,9 +529,9 @@ label {
 }
 
 .header-cta-2 ul li.h-phone {
-    font-family: "Marcellus", serif;
-    font-weight: 400;
-    font-size: 18px;
+    font-family: "Sora", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
 }
 
 .second-menu .header-cta ul li {
@@ -3335,6 +3335,14 @@ section:hover .section-title h2::before {
     background: #fff;
     padding: 40px;
     border-radius: 20px;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.services-box:hover {
+    color: inherit;
 }
 
 .services-content span {
