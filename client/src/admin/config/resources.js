@@ -31,12 +31,12 @@ export const RESOURCES = [
       { name: 'title', label: 'Title', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true },
       { name: 'shortDesc', label: 'Short Description', type: 'textarea' },
-      { name: 'icon', label: 'Icon (small round image on the service card)', type: 'image' },
       { name: 'bodyContent', label: 'Full Description (HTML)', type: 'richtext' },
       { name: 'metaTitle', label: 'Meta Title', type: 'text' },
       { name: 'metaDescription', label: 'Meta Description', type: 'textarea' },
       { name: 'order', label: 'Order', type: 'number' },
       { name: 'image', label: 'Image', type: 'image' },
+      { name: 'gallery', label: 'Gallery Images (shown on the service details page)', type: 'imageArray' },
     ],
   },
   {

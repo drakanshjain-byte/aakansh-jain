@@ -9,6 +9,11 @@ import { uploadBufferToCloudinary, deleteFromCloudinary } from '../middleware/up
  *  - imageField: name of the schema field storing { url, publicId } (default 'image')
  *  - sortBy: default sort, e.g. { order: 1 }
  *  - searchable: array of field names allowed for simple ?search= text match (optional)
+ *  - arrayImageFields: field names storing an array of { url, publicId } (e.g. a gallery).
+ *    The client uploads each new file individually via POST /upload, then sends the full
+ *    desired array (kept existing items + newly-uploaded ones) as a JSON string in that
+ *    form field. Any items present in the old array but missing from the new one are
+ *    deleted from Cloudinary.
  */
 export const makeCrudController = (Model, options = {}) => {
   const {
@@ -17,9 +22,25 @@ export const makeCrudController = (Model, options = {}) => {
     // one uploadable image. Falls back to [imageField] so existing single-image
     // resources (services, testimonials, etc.) keep working unchanged.
     imageFields = [imageField],
+    arrayImageFields = [],
     sortBy = { order: 1, createdAt: 1 },
     searchable = [],
   } = options;
+
+  // Parses a body field that may arrive as a JSON string (multipart form field) or
+  // already as an array, returning only well-formed { url, publicId } entries.
+  const parseArrayImageField = (raw) => {
+    if (Array.isArray(raw)) return raw.filter((it) => it && it.url);
+    if (typeof raw === 'string' && raw.trim()) {
+      try {
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed.filter((it) => it && it.url) : [];
+      } catch {
+        return [];
+      }
+    }
+    return [];
+  };
 
   // req.file (upload.single) covers the legacy single-image case; req.files (upload.fields)
   // covers the multi-image case. This helper normalizes both into a { fieldName: file } map.
@@ -78,6 +99,9 @@ export const makeCrudController = (Model, options = {}) => {
       const uploaded = await uploadBufferToCloudinary(file.buffer, Model.collection.collectionName);
       body[fieldName] = { url: uploaded.url, publicId: uploaded.publicId };
     }
+    arrayImageFields.forEach((fieldName) => {
+      if (body[fieldName] !== undefined) body[fieldName] = parseArrayImageField(body[fieldName]);
+    });
     const item = await Model.create(body);
     res.status(201).json({ success: true, data: item });
   });
@@ -98,6 +122,17 @@ export const makeCrudController = (Model, options = {}) => {
         await deleteFromCloudinary(item[fieldName].publicId);
       }
     }
+    for (const fieldName of arrayImageFields) {
+      if (body[fieldName] === undefined) continue;
+      const newArr = parseArrayImageField(body[fieldName]);
+      const oldArr = item[fieldName] || [];
+      const newIds = new Set(newArr.map((it) => it.publicId).filter(Boolean));
+      const removed = oldArr.filter((it) => it.publicId && !newIds.has(it.publicId));
+      for (const it of removed) {
+        await deleteFromCloudinary(it.publicId);
+      }
+      body[fieldName] = newArr;
+    }
     Object.assign(item, body);
     await item.save();
     res.json({ success: true, data: item });
@@ -112,6 +147,11 @@ export const makeCrudController = (Model, options = {}) => {
     for (const fieldName of imageFields) {
       if (item[fieldName]?.publicId) {
         await deleteFromCloudinary(item[fieldName].publicId);
+      }
+    }
+    for (const fieldName of arrayImageFields) {
+      for (const img of item[fieldName] || []) {
+        if (img?.publicId) await deleteFromCloudinary(img.publicId);
       }
     }
     await item.deleteOne();

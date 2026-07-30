@@ -19,12 +19,16 @@ export default function ResourceForm() {
   const [values, setValues] = useState(() => {
     const initial = {};
     config.fields.forEach((f) => {
-      if (f.type !== 'image') initial[f.name] = emptyValueFor(f.type);
+      if (f.type !== 'image' && f.type !== 'imageArray') initial[f.name] = emptyValueFor(f.type);
     });
     return initial;
   });
   const [imageFiles, setImageFiles] = useState({});
   const [existingImages, setExistingImages] = useState({});
+  // imageArray fields (e.g. Service.gallery): existing = already-saved {url,publicId} list,
+  // newFiles = freshly-picked File objects waiting to be uploaded on save.
+  const [imageArrays, setImageArrays] = useState({});
+  const [imageArrayNewFiles, setImageArrayNewFiles] = useState({});
   const [loading, setLoading] = useState(!isNew);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
@@ -35,7 +39,7 @@ export default function ResourceForm() {
       const data = res.data.data;
       const next = {};
       config.fields.forEach((f) => {
-        if (f.type === 'image') return;
+        if (f.type === 'image' || f.type === 'imageArray') return;
         if (f.type === 'tags') next[f.name] = (data[f.name] || []).join(', ');
         else next[f.name] = data[f.name] ?? emptyValueFor(f.type);
       });
@@ -45,6 +49,11 @@ export default function ResourceForm() {
         if (f.type === 'image' && data[f.name]?.url) imgs[f.name] = data[f.name].url;
       });
       setExistingImages(imgs);
+      const imgArrays = {};
+      config.fields.forEach((f) => {
+        if (f.type === 'imageArray') imgArrays[f.name] = data[f.name] || [];
+      });
+      setImageArrays(imgArrays);
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +68,7 @@ export default function ResourceForm() {
     try {
       const fd = new FormData();
       config.fields.forEach((f) => {
-        if (f.type === 'image') return;
+        if (f.type === 'image' || f.type === 'imageArray') return;
         if (f.type === 'tags') {
           values[f.name]
             .split(',')
@@ -79,6 +88,23 @@ export default function ResourceForm() {
         // require the route to use upload.fields([...]) instead — see slideRoutes.js.
         fd.append(fieldName === config.imageField ? 'image' : fieldName, file);
       });
+
+      // imageArray fields (e.g. gallery): upload any newly-picked files one at a time via
+      // the generic /upload endpoint, then send the full desired array (kept + newly
+      // uploaded) as a JSON string field so the backend can save/diff it.
+      for (const f of config.fields) {
+        if (f.type !== 'imageArray') continue;
+        const kept = imageArrays[f.name] || [];
+        const newFiles = imageArrayNewFiles[f.name] || [];
+        const uploaded = [];
+        for (const file of newFiles) {
+          const uploadFd = new FormData();
+          uploadFd.append('image', file);
+          const res = await api.post('/upload', uploadFd);
+          uploaded.push({ url: res.data.data.url, publicId: res.data.data.publicId });
+        }
+        fd.append(f.name, JSON.stringify([...kept, ...uploaded]));
+      }
 
       if (isNew) {
         const res = await api.post(config.api, fd);
@@ -112,6 +138,52 @@ export default function ResourceForm() {
                   <img src={existingImages[f.name]} alt="" style={{ width: 100, display: 'block', marginBottom: 8, borderRadius: 4 }} />
                 )}
                 <input type="file" accept="image/*" onChange={(e) => setImageFiles((p) => ({ ...p, [f.name]: e.target.files[0] }))} />
+              </div>
+            );
+          }
+          if (f.type === 'imageArray') {
+            const kept = imageArrays[f.name] || [];
+            const pending = imageArrayNewFiles[f.name] || [];
+            return (
+              <div className="admin-form-group" key={f.name}>
+                <label>{f.label}</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 8 }}>
+                  {kept.map((img, i) => (
+                    <div key={img.publicId || img.url || i} style={{ position: 'relative' }}>
+                      <img src={img.url} alt="" style={{ width: 90, height: 90, objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+                      <button
+                        type="button"
+                        onClick={() => setImageArrays((p) => ({ ...p, [f.name]: p[f.name].filter((_, idx) => idx !== i) }))}
+                        style={{ position: 'absolute', top: -6, right: -6, width: 20, height: 20, borderRadius: '50%', border: 'none', background: '#c0392b', color: '#fff', cursor: 'pointer', lineHeight: '20px', padding: 0 }}
+                        title="Remove image"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                  {pending.map((file, i) => (
+                    <div key={`new-${i}`} style={{ position: 'relative' }}>
+                      <img src={URL.createObjectURL(file)} alt="" style={{ width: 90, height: 90, objectFit: 'cover', borderRadius: 4, display: 'block', opacity: 0.7 }} />
+                      <button
+                        type="button"
+                        onClick={() => setImageArrayNewFiles((p) => ({ ...p, [f.name]: p[f.name].filter((_, idx) => idx !== i) }))}
+                        style={{ position: 'absolute', top: -6, right: -6, width: 20, height: 20, borderRadius: '50%', border: 'none', background: '#c0392b', color: '#fff', cursor: 'pointer', lineHeight: '20px', padding: 0 }}
+                        title="Remove"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={(e) =>
+                    setImageArrayNewFiles((p) => ({ ...p, [f.name]: [...(p[f.name] || []), ...Array.from(e.target.files)] }))
+                  }
+                />
+                <p style={{ fontSize: 12, color: '#888', marginTop: 4 }}>Add one or more photos. Click × to remove one.</p>
               </div>
             );
           }
