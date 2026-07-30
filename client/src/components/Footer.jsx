@@ -44,7 +44,6 @@ export default function Footer() {
   }, []);
 
   const logoUrl = settings?.logoAlt?.url || settings?.logo?.url || '/assets/img/logo/f_logo.png';
-  const bgImage = settings?.footerBgImage?.url;
 
   // "Our Services" column is always generated live from the actual Services collection —
   // whatever the admin adds/removes there is exactly what shows up here, nothing hardcoded.
@@ -67,7 +66,7 @@ export default function Footer() {
     <footer className="footer-bg footer-p fix">
       <div
         className="footer-top pt-60"
-        style={bgImage ? { backgroundImage: `url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'bottom left' } : undefined}
+        style={{ backgroundColor: '#062236' }}
       >
         <div className="container f-logo-area">
           <div className="row align-items-center">

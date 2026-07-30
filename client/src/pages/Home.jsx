@@ -5,6 +5,8 @@ import Layout from '../components/Layout.jsx';
 import PageMeta from '../components/PageMeta.jsx';
 import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
 import './home-blog.css';
+import './dr-hero.css';
+import './dr-booking.css';
 
 export default function Home() {
   const [data, setData] = useState({
@@ -53,83 +55,86 @@ export default function Home() {
       <PageMeta pageKey="home" fallbackTitle="Natural Cosmetic Surgery Centre" />
 
       {/* hero */}
-      <section id="home" className="slider-area fix p-relative">
-        <div className="slider-active2 pl-100 pr-100">
-          <div
-            className="single-slider slider-bg d-flex img"
-            style={{
-              backgroundImage: `url(${slide?.image?.url || '/assets/img/slider/header-bg.png'})`,
-              backgroundSize: 'cover',
-              backgroundColor: '#3A1607',
-            }}
-          >
-            <div className="container">
-              <div className="row align-items-center">
-                <div className="col-lg-6 col-md-12">
-                  <div className="slider-content s-slider-content">
-                    <h5 className="fade-slide bottom">
-                      <img src="/assets/img/bg/h-icon.svg" alt="img" /> {slide?.eyebrowText || 'Best In Town'}
-                    </h5>
-                    <h2 className="text-anime-style-3">{slide?.headline || 'Transforming Look Changing Lives'}</h2>
-                    <p className="fade-slide top">
-                      {slide?.subheading ||
-                        'Plastic surgery is a specialized medical field that focuses on enhancing restoring function through surgical and non-surgical techniques.'}
-                    </p>
-                    <div className="slider-btn mt-30">
-                      <div className="fade-slide left">
-                        <Link to={slide?.ctaLink || '/contact'} className="btn btn-blue mr-15">
-                          {slide?.ctaText || 'Get Appointment'} <i className="fa-light fa-arrow-right-long"></i>
-                        </Link>
-                      </div>
-                      <div className="user-review fade-slide right">
-                        <div className="icon">
-                          <img src={slide?.clientAvatarsImage?.url || '/assets/img/slider/h-client-img.png'} alt="img" />
-                        </div>
-                        <div className="text">
-                          <p>{slide?.happyClientsCount || '2,000+'}</p>
-                          <p>{slide?.happyClientsLabel || 'Happy Clients'}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="counter-outer fade-slide bottom">
-                      <ul>
-                        <li>
-                          <div className="counter-outer-box">
-                            <h3>{slide?.counter1Value || '50k+'}</h3>
-                            <p>{slide?.counter1Label || 'Clients Review'}</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="counter-outer-box">
-                            <h3>{slide?.counter2Value || '100+'}</h3>
-                            <p>{slide?.counter2Label || 'Expert Surgeon'}</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="counter-outer-box">
-                            <h3>{slide?.counter3Value || '20+'}</h3>
-                            <p>{slide?.counter3Label || 'Award Winner'}</p>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
+      <section
+        id="home"
+        className="dr-hero p-relative fix"
+        style={
+          slide?.image?.url
+            ? {
+                backgroundImage: `linear-gradient(135deg, rgba(8,31,54,0.88) 0%, rgba(13,58,92,0.85) 55%, rgba(11,95,165,0.8) 130%), url(${slide.image.url})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }
+            : undefined
+        }
+      >
+        <div className="dr-hero-glow" aria-hidden="true"></div>
+        <div className="dr-hero-dots" aria-hidden="true"></div>
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6 col-md-12">
+              <div className="fade-slide bottom">
+                <span className="dr-hero-eyebrow">
+                  <i className="fa-solid fa-sparkles"></i> {slide?.eyebrowText || 'Best In Town'}
+                </span>
+                <h1 className="dr-hero-title">{slide?.headline || 'Transforming Looks, Restoring Confidence'}</h1>
+                <p className="dr-hero-subtitle">
+                  {slide?.subheading ||
+                    'Plastic surgery is a specialized medical field that focuses on enhancing and restoring function through surgical and non-surgical techniques.'}
+                </p>
+
+                <div className="dr-hero-actions">
+                  <Link to={slide?.ctaLink || '/contact'} className="dr-hero-btn">
+                    {slide?.ctaText || 'Get Appointment'} <i className="fa-light fa-arrow-right-long"></i>
+                  </Link>
+                </div>
+
+                <div className="dr-hero-stats">
+                  <div className="dr-hero-stat">
+                    <h3>{slide?.counter1Value || '50k+'}</h3>
+                    <p>{slide?.counter1Label || 'Clients Review'}</p>
+                  </div>
+                  <div className="dr-hero-stat">
+                    <h3>{slide?.counter2Value || '100+'}</h3>
+                    <p>{slide?.counter2Label || 'Expert Surgeon'}</p>
+                  </div>
+                  <div className="dr-hero-stat">
+                    <h3>{slide?.counter3Value || '20+'}</h3>
+                    <p>{slide?.counter3Label || 'Award Winner'}</p>
                   </div>
                 </div>
-                <div className="col-lg-6">
-                  <div className="image-layer fade-slide right">
-                    <div className="play-box fade-slide top">
-                      <a href={slide?.videoUrl || 'https://www.youtube.com/watch?v=gyGsPlt06bo'} className="popup-video" tabIndex="0">
-                        <img src="/assets/img/slider/slider-play.png" alt="shape" />
-                      </a>
-                    </div>
-                    <img src={slide?.heroImage?.url || '/assets/img/slider/header-img.png'} alt="img" />
+              </div>
+            </div>
+
+            <div className="col-lg-6 col-md-12">
+              <div className="dr-hero-visual fade-slide right">
+                <div className="dr-hero-blob" aria-hidden="true"></div>
+                <div className="dr-hero-photo-wrap">
+                  <img src={slide?.heroImage?.url || '/assets/img/slider/header-img.png'} alt={slide?.headline || 'Dr. Aakansh Jain'} />
+                </div>
+
+                <div className="dr-hero-float-card">
+                  <img src={slide?.clientAvatarsImage?.url || '/assets/img/slider/h-client-img.png'} alt="Happy clients" />
+                  <div>
+                    <strong>{slide?.happyClientsCount || '2,000+'}</strong>
+                    <span>{slide?.happyClientsLabel || 'Happy Clients'}</span>
                   </div>
+                </div>
+
+                <div className="dr-hero-badge">
+                  <i className="fa-solid fa-award"></i>
+                  <span>
+                    Award-Winning
+                    <br />
+                    Cosmetic Care
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* about (home-only, independent from /about page content) */}
       <section id="about" className="about-area about-p pt-150 pb-150 p-relative fix">
@@ -246,7 +251,7 @@ export default function Home() {
       <section className="services-area p-relative fix">
         <div
           className="container-box pt-150 pb-150"
-          style={{ backgroundColor: '#EAF2FA', backgroundImage: 'url(/assets/img/bg/services-bg.png)', backgroundSize: 'cover' }}
+          style={{ backgroundColor: '#EAF2FA' }}
         >
           <div className="container">
             <div className="row justify-content-center mb-50">
@@ -270,9 +275,6 @@ export default function Home() {
                       <img src={s?.image?.url || `/assets/img/bg/services-0${(i % 3) + 1}.png`} alt="icon" />
                     </div>
                     <div className="services-content">
-                      <div className="icon">
-                        <img src={s?.icon?.url || '/assets/img/icon/sr-icon-01.svg'} alt="icon" />
-                      </div>
                       <div className="row">
                         <div className="col-lg-10">
                           <h4>
@@ -441,26 +443,22 @@ export default function Home() {
       </section>
 
       {/* booking */}
-      <section className="booking p-relative fix">
-        <div className="container-box" style={{ backgroundImage: 'url(/assets/img/bg/booking-lef.png)', backgroundRepeat: 'no-repeat', backgroundPosition: 'bottom left' }}>
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-6 col-md-12">
-                <div className="contact-bg02">
-                  <div className="section-title center-align">
-                    <h2 className="text-anime-style-3">{data.bookingSection?.heading || 'Get an Appoinment'}</h2>
-                  </div>
-                  <BookingForm />
-                </div>
+      <section className="p-relative fix pt-150 pb-150">
+        <div className="container">
+          <div className="dr-booking">
+            <div className="dr-booking-row">
+              <div className="dr-booking-content">
+                <span className="dr-booking-eyebrow">
+                  <i className="fa-solid fa-calendar-check"></i> Book A Visit
+                </span>
+                <h2 className="dr-booking-title text-anime-style-3">{data.bookingSection?.heading || 'Get an Appoinment'}</h2>
+                {data.bookingSection?.description && <p className="dr-booking-subtitle">{data.bookingSection.description}</p>}
+                <BookingForm />
               </div>
-              <div className="col-lg-6 col-md-12">
-                <div className="booking-img">
+              <div className="dr-booking-visual">
+                <div className="dr-booking-blob" aria-hidden="true"></div>
+                <div className="dr-booking-photo-wrap">
                   <img src={data.bookingSection?.image?.url || '/assets/img/bg/booking-img.png'} alt="img" />
-                  <div className="play-box fade-slide top">
-                    <a href="https://www.youtube.com/watch?v=gyGsPlt06bo" className="popup-video" tabIndex="0">
-                      <img src="/assets/img/bg/play-3.png" alt="shape" />
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -645,36 +643,26 @@ function BookingForm() {
   };
 
   return (
-    <form onSubmit={submit} className="contact-form mt-30">
-      <div className="row">
-        <div className="col-lg-6 col-md-6">
-          <div className="contact-field p-relative c-name mb-20">
-            <input type="text" placeholder="First Name" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-          </div>
+    <form onSubmit={submit} className="dr-booking-form">
+      <div className="dr-booking-form-row">
+        <div className="dr-field">
+          <input type="text" placeholder="First Name" required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
         </div>
-        <div className="col-lg-6 col-md-6">
-          <div className="contact-field p-relative c-subject mb-20">
-            <input type="email" placeholder="Email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          </div>
-        </div>
-        <div className="col-lg-12 col-md-12">
-          <div className="contact-field p-relative c-subject mb-20">
-            <input type="text" placeholder="Service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} />
-          </div>
-        </div>
-        <div className="col-lg-12">
-          <div className="contact-field p-relative c-message mb-30">
-            <textarea placeholder="Write comments" rows="6" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}></textarea>
-          </div>
-          <div className="slider-btn">
-            <button className="btn" type="submit" disabled={status === 'loading'}>
-              <span>{status === 'loading' ? 'Sending...' : 'Submit Now'}</span> <i className="fa-light fa-arrow-right-long"></i>
-            </button>
-          </div>
-          {status === 'success' && <p className="mt-15" style={{ color: 'green' }}>Thanks! We'll be in touch shortly.</p>}
-          {status && status !== 'loading' && status !== 'success' && <p className="mt-15" style={{ color: 'red' }}>{status}</p>}
+        <div className="dr-field">
+          <input type="email" placeholder="Email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
         </div>
       </div>
+      <div className="dr-field">
+        <input type="text" placeholder="Service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })} />
+      </div>
+      <div className="dr-field">
+        <textarea placeholder="Write comments" rows="6" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })}></textarea>
+      </div>
+      <button className="dr-booking-submit" type="submit" disabled={status === 'loading'}>
+        <span>{status === 'loading' ? 'Sending...' : 'Submit Now'}</span> <i className="fa-light fa-arrow-right-long"></i>
+      </button>
+      {status === 'success' && <p className="dr-booking-status success">Thanks! We'll be in touch shortly.</p>}
+      {status && status !== 'loading' && status !== 'success' && <p className="dr-booking-status error">{status}</p>}
     </form>
   );
 }

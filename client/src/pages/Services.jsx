@@ -33,9 +33,6 @@ export default function Services() {
                     <img src={s.image?.url || '/assets/img/bg/services-01.png'} alt={s.title} />
                   </div>
                   <div className="services-content">
-                    <div className="icon">
-                      <img src={s.icon?.url || '/assets/img/icon/sr-icon-01.svg'} alt="icon" />
-                    </div>
                     <h4>
                       <Link to={`/services/${s.slug}`}>{s.title}</Link>
                     </h4>

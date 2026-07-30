@@ -8388,7 +8388,7 @@ section:hover .section-title h2::before {
 
 .booking .container-box {
     border-radius: 0 0 20px 20px;
-    background: #3A1607;
+    background: #0b2a44;
 }
 
 
@@ -8454,13 +8454,13 @@ section:hover .section-title h2::before {
 
 .booking .contact-field select,
 .booking .contact-field input[type=date] {
-    color: #926d63;
+    color: #9fbdd6;
 }
 
 .booking input::placeholder,
 .booking input[type=date]::placeholder,
 .booking select::placeholder {
-    color: #926d63;
+    color: #9fbdd6;
 }
 
 .booking-img2 {
@@ -8476,7 +8476,7 @@ section:hover .section-title h2::before {
 
 .booking .contact-field input::placeholder,
 .booking .contact-field textarea::placeholder {
-    color: #926d63;
+    color: #9fbdd6;
 }
 
 /* meal */
