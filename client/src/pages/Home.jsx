@@ -250,11 +250,11 @@ export default function Home() {
       {/* services */}
       <section className="services-area p-relative fix">
         <div
-          className="container-box pt-150 pb-150"
+          className="container-box pt-60 pb-150"
           style={{ backgroundColor: '#EAF2FA' }}
         >
           <div className="container">
-            <div className="row justify-content-center mb-50">
+            <div className="row justify-content-center mb-20">
               <div className="col-lg-7 col-md-12">
                 <div className="section-title text-center wow fadeInDown animated" data-animation="fadeInDown" data-delay=".4s">
                   <h5>
