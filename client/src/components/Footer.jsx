@@ -89,8 +89,8 @@ export default function Footer() {
           </div>
         </div>
         <div className="container">
-          <div className="row">
-            <div className="col-xl-4 col-lg-4 col-sm-6">
+          <div className="row footer-widgets-row">
+            <div className="col-xl-3 col-lg-3 col-sm-6">
               <div className="footer-widget mb-30 footer-connect">
                 <div className="subricbe p-relative">
                   <h3>Connect With Us</h3>
@@ -106,10 +106,10 @@ export default function Footer() {
               </div>
             </div>
             {columns.map((col, i) => (
-              <div className="col-xl-2 col-lg-2 col-sm-6" key={i}>
+              <div className={i === 0 ? 'col-xl-3 col-lg-3 col-sm-6' : 'col-xl-2 col-lg-2 col-sm-6'} key={i}>
                 <div className="footer-widget mb-30">
                   {col.heading ? <h4 className="fw-title">{col.heading}</h4> : null}
-                  <div className="footer-link bdr pl-50">
+                  <div className="footer-link">
                     <ul>
                       {col.links?.map((l, j) => (
                         <li key={j}>
