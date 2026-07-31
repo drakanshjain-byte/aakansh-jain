@@ -6,6 +6,7 @@ import PageMeta from '../components/PageMeta.jsx';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import LoadingBlock from '../components/LoadingBlock.jsx';
 import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
+import './service-detail.css';
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -53,11 +54,19 @@ export default function ServiceDetail() {
                 <p>{service.shortDesc}</p>
                 <div dangerouslySetInnerHTML={{ __html: service.bodyContent || '' }} />
                 {service.gallery?.length > 0 && (
-                  <div className="row mt-30">
+                  <div className="service-gallery">
                     {service.gallery.map((g, i) => (
-                      <div className="col-md-4" key={i}>
-                        <img src={g.url} alt={`gallery ${i}`} style={{ width: '100%' }} />
-                      </div>
+                      <a
+                        key={i}
+                        href={g.url}
+                        className="popup-image service-gallery-item"
+                        title={`${service.title} - image ${i + 1}`}
+                      >
+                        <img src={g.url} alt={`${service.title} gallery ${i + 1}`} />
+                        <span className="service-gallery-zoom">
+                          <i className="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                      </a>
                     ))}
                   </div>
                 )}
@@ -82,7 +91,7 @@ export default function ServiceDetail() {
       )}
 
       {ready && (
-        <section className="faq-area faq-area-2 pb-150 p-relative fix">
+        <section className="faq-area faq-area-2 service-detail-cta pb-150 p-relative fix">
           <div className="container">
             <div className="section-title text-center mb-50">
               <h2 className="text-anime-style-3">Get an Appointment</h2>

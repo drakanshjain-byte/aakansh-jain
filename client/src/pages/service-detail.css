@@ -1,0 +1,91 @@
+/* Scoped styles for the Service Details page only — namespaced under
+   .service-detail-cta / .service-gallery so nothing here can leak into or
+   collide with the legacy template CSS (style.css / responsive.css) used
+   elsewhere on the site. */
+
+/* ---------- "Get an Appointment" CTA heading ----------
+   The shared .faq-area .section-title h2 rule in style.css is 160px, which
+   is meant for the big 3-letter "FAQ" display heading on the FAQ page. On
+   this page it was blowing "Get an Appointment" up across two giant lines.
+   Overriding it here, scoped to this page's CTA block only. */
+.service-detail-cta .section-title h2 {
+  font-size: 42px !important;
+  line-height: 1.25;
+  margin-bottom: 30px !important;
+}
+
+@media (max-width: 767px) {
+  .service-detail-cta .section-title h2 {
+    font-size: 28px !important;
+  }
+}
+
+/* ---------- Gallery ---------- */
+.service-gallery {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.service-gallery-item {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 6px 18px rgba(11, 95, 165, 0.12);
+  cursor: pointer;
+}
+
+.service-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.service-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.service-gallery-zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 31, 54, 0.35);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-gallery-item:hover .service-gallery-zoom {
+  opacity: 1;
+}
+
+.service-gallery-zoom i {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  color: #0b5fa5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transform: translateY(8px);
+  transition: transform 0.3s ease;
+}
+
+.service-gallery-item:hover .service-gallery-zoom i {
+  transform: translateY(0);
+}
+
+@media (max-width: 575px) {
+  .service-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+}

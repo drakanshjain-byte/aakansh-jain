@@ -7,6 +7,7 @@ import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
 import './home-blog.css';
 import './dr-hero.css';
 import './dr-booking.css';
+import './home-booking-info.css';
 
 export default function Home() {
   const [data, setData] = useState({
@@ -303,7 +304,7 @@ export default function Home() {
       </section>
 
       {/* how to book: offline, online, contact form */}
-      <section className="who-area p-relative fix">
+      <section className="who-area booking-info-area p-relative fix">
         <div className="container-box pt-150 pb-150">
           <div className="container">
             <div className="row justify-content-center">
@@ -323,11 +324,12 @@ export default function Home() {
             <div className="row align-items-stretch">
               <div className="col-lg-4 col-md-6 col-sm-12 d-flex">
                 <div
-                  className="how-it-work-box wow fadeInUp animated"
+                  className="how-it-work-box booking-step-card wow fadeInUp animated"
                   data-animation="fadeInUp"
                   data-delay=".2s"
                   style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
                 >
+                  <span className="booking-step-num">01</span>
                   <div className="no">
                     <i className="fa-solid fa-hospital"></i>
                   </div>
@@ -338,7 +340,7 @@ export default function Home() {
                         'Prefer speaking to someone directly? Call our clinic or walk in to schedule your in-person appointment.'}
                     </p>
                     {data.bookingInfo?.offlineAddress && (
-                      <p className="mt-10">
+                      <p className="booking-address-chip">
                         <i className="fa-solid fa-location-dot"></i> {data.bookingInfo.offlineAddress}
                       </p>
                     )}
@@ -352,11 +354,12 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-12 d-flex">
                 <div
-                  className="how-it-work-box wow fadeInUp animated"
+                  className="how-it-work-box booking-step-card wow fadeInUp animated"
                   data-animation="fadeInUp"
                   data-delay=".4s"
                   style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
                 >
+                  <span className="booking-step-num">02</span>
                   <div className="no">
                     <i className="fa-solid fa-calendar-check"></i>
                   </div>
@@ -376,11 +379,12 @@ export default function Home() {
               </div>
               <div className="col-lg-4 col-md-6 col-sm-12 d-flex">
                 <div
-                  className="how-it-work-box wow fadeInUp animated"
+                  className="how-it-work-box booking-step-card wow fadeInUp animated"
                   data-animation="fadeInUp"
                   data-delay=".6s"
                   style={{ display: 'flex', flexDirection: 'column', width: '100%' }}
                 >
+                  <span className="booking-step-num">03</span>
                   <div className="no">
                     <i className="fa-solid fa-comment-medical"></i>
                   </div>

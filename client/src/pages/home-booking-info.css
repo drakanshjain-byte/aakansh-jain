@@ -1,0 +1,139 @@
+/* Scoped styles for the "How To Book Your Appointment" section on the
+   homepage only (.booking-info-area). Nothing here touches the shared
+   .how-it-work-box / .chevron-button rules used elsewhere, since it wins on
+   selector specificity (extra scoping classes), not load order or !important. */
+
+.booking-info-area {
+  background: linear-gradient(180deg, #f5faff 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-info-area::before,
+.booking-info-area::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.booking-info-area::before {
+  top: -140px;
+  right: -120px;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(11, 95, 165, 0.09) 0%, rgba(11, 95, 165, 0) 70%);
+}
+
+.booking-info-area::after {
+  bottom: -160px;
+  left: -140px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(11, 95, 165, 0.07) 0%, rgba(11, 95, 165, 0) 70%);
+}
+
+.booking-info-area .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards */
+.booking-info-area .how-it-work-box.booking-step-card {
+  border: none;
+  border-radius: 22px;
+  padding: 54px 34px 40px;
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(11, 95, 165, 0.08);
+  position: relative;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.booking-info-area .how-it-work-box.booking-step-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 55px rgba(11, 95, 165, 0.16);
+}
+
+.booking-step-num {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  font-family: 'Marcellus', serif;
+  font-size: 46px;
+  color: #0b5fa5;
+  opacity: 0.08;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Icon badge */
+.booking-info-area .how-it-work-box .no {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 26px;
+  background: linear-gradient(135deg, #0b5fa5 0%, #0d3a5c 100%);
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 10px 24px rgba(11, 95, 165, 0.3);
+}
+
+.booking-info-area .how-it-work-box h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+/* Address chip inside the "Book Offline" card */
+.booking-info-area .booking-address-chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f1f7fc;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-top: 18px !important;
+  text-align: left;
+  color: #4a5a68;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.booking-info-area .booking-address-chip i {
+  color: #0b5fa5;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Buttons — .chevron-button has no rules anywhere else in the project, so
+   this is a clean, isolated definition. */
+.booking-info-area .chevron-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  border-radius: 50px;
+  border: 1.5px solid #0b5fa5;
+  color: #0b5fa5;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.booking-info-area .chevron-button i {
+  transition: transform 0.3s ease;
+}
+
+.booking-info-area .chevron-button:hover {
+  background: #0b5fa5;
+  color: #fff;
+}
+
+.booking-info-area .chevron-button:hover i {
+  transform: translateX(4px);
+}
+
+@media (max-width: 767px) {
+  .booking-info-area .how-it-work-box.booking-step-card {
+    padding: 46px 28px 32px;
+  }
+}

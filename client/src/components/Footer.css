@@ -35,3 +35,56 @@
   transform: translateY(-3px);
   color: #fff !important;
 }
+
+/* .footer-top is only ever used here. style.css gives it a 100px margin-bottom
+   (leftover from a design where something else filled that space) which was
+   showing up as a big blank white gap under the rounded dark box — shrinking
+   it here. Equal specificity, but this file loads after style.css in the
+   build, so it wins. */
+.footer-top {
+  margin-bottom: 0;
+}
+
+/* Copyright bar — now sits in the plain white area below the dark box,
+   so it needs dark-on-white styling rather than the light-on-dark
+   .copyright-wrap rules from style.css. */
+.footer-copyright-wrap {
+  background: #fff;
+  padding: 22px 0 30px;
+}
+
+.footer-copyright-text {
+  color: #5b6b78;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.footer-copyright-text a {
+  color: #0b5fa5;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-copyright-text a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright-wrap ul {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-copyright-wrap ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.footer-copyright-wrap ul li a {
+  color: #5b6b78;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.footer-copyright-wrap ul li a:hover {
+  color: #0b5fa5;
+}

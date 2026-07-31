@@ -158,18 +158,25 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="copyright-wrap">
-          <div className="container">
-            <div className="row align-items-center">
-              <div className="col-lg-12 text-center">
-                <ul>
-                  {legalLinks.map((l, i) => (
-                    <li key={i}>
-                      <a href={l.url || '#'}>{l.label}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      </div>
+      {/* Sits in the plain white area below the dark rounded box, not inside it. */}
+      <div className="footer-copyright-wrap">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-12 text-center">
+              <p className="footer-copyright-text">
+                © {new Date().getFullYear()} Dr. Aakansh Jain. All Rights Reserved. &nbsp;|&nbsp; Designed &amp; Developed by{' '}
+                <a href="https://toflymedia.com" target="_blank" rel="noreferrer">
+                  Tofly Media
+                </a>
+              </p>
+              <ul>
+                {legalLinks.map((l, i) => (
+                  <li key={i}>
+                    <a href={l.url || '#'}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
