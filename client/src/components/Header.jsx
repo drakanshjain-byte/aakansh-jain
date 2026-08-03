@@ -40,7 +40,7 @@ export default function Header() {
               <div className="col-xl-2 col-lg-2 col-md-5">
                 <div className="logo">
                   <Link to="/">
-                    <img src={logoUrl} alt="Natural Cosmetic Surgery Centre" />
+                    <img src={logoUrl} alt="Dr. Aakansh Jain" />
                   </Link>
                 </div>
               </div>
