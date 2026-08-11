@@ -3,17 +3,17 @@
    flow (no absolute/negative-margin positioning), and the section carries generous
    bottom padding, so nothing can ever ride up into the footer regardless of iframe
    height, viewport width, or content length.
-   Palette matches the rest of the site: #0B5FA5 accent, #1A2733 ink, #EAF2FA cream.
+   Palette matches the rest of the site: #70028F accent, #321537 ink, #F2DDF3 cream.
    Scoped entirely under .cp-contact so it can't leak into other pages. */
 
 .cp-contact {
-  --cp-bg: #EAF2FA;
+  --cp-bg: #F2DDF3;
   --cp-card: #ffffff;
-  --cp-ink: #1A2733;
+  --cp-ink: #321537;
   --cp-muted: #6b6f76;
-  --cp-accent: #0B5FA5;
+  --cp-accent: #70028F;
   --cp-accent-soft: rgba(217, 107, 61, 0.1);
-  --cp-line: rgba(10, 17, 25, 0.1);
+  --cp-line: rgba(21, 10, 25, 0.1);
 
   background: var(--cp-bg);
   padding: 120px 0 160px;
@@ -124,7 +124,7 @@
   grid-template-columns: 0.85fr 2px 1.15fr;
   background: var(--cp-card);
   border-radius: 24px;
-  box-shadow: 0 30px 70px rgba(10, 17, 25, 0.08);
+  box-shadow: 0 30px 70px rgba(21, 10, 25, 0.08);
   overflow: hidden;
   position: relative;
 }
@@ -363,7 +363,7 @@
   margin-top: 44px;
   background: var(--cp-card);
   border-radius: 24px;
-  box-shadow: 0 30px 70px rgba(10, 17, 25, 0.08);
+  box-shadow: 0 30px 70px rgba(21, 10, 25, 0.08);
   overflow: hidden;
   position: relative;
 }
@@ -383,7 +383,7 @@
   font-family: "Sora", sans-serif;
   font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 10px 24px rgba(10, 17, 25, 0.25);
+  box-shadow: 0 10px 24px rgba(21, 10, 25, 0.25);
 }
 
 .cp-map-tag i {

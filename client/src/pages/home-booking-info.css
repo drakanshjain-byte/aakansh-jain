@@ -23,7 +23,7 @@
   right: -120px;
   width: 340px;
   height: 340px;
-  background: radial-gradient(circle, rgba(11, 95, 165, 0.09) 0%, rgba(11, 95, 165, 0) 70%);
+  background: radial-gradient(circle, rgba(112, 2, 143, 0.09) 0%, rgba(112, 2, 143, 0) 70%);
 }
 
 .booking-info-area::after {
@@ -31,7 +31,7 @@
   left: -140px;
   width: 380px;
   height: 380px;
-  background: radial-gradient(circle, rgba(11, 95, 165, 0.07) 0%, rgba(11, 95, 165, 0) 70%);
+  background: radial-gradient(circle, rgba(112, 2, 143, 0.07) 0%, rgba(112, 2, 143, 0) 70%);
 }
 
 .booking-info-area .container {
@@ -45,14 +45,14 @@
   border-radius: 22px;
   padding: 54px 34px 40px;
   background: #ffffff;
-  box-shadow: 0 15px 40px rgba(11, 95, 165, 0.08);
+  box-shadow: 0 15px 40px rgba(112, 2, 143, 0.08);
   position: relative;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .booking-info-area .how-it-work-box.booking-step-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 25px 55px rgba(11, 95, 165, 0.16);
+  box-shadow: 0 25px 55px rgba(112, 2, 143, 0.16);
 }
 
 .booking-step-num {
@@ -61,7 +61,7 @@
   right: 26px;
   font-family: 'Marcellus', serif;
   font-size: 46px;
-  color: #0b5fa5;
+  color: #70028f;
   opacity: 0.08;
   line-height: 1;
   pointer-events: none;
@@ -72,10 +72,10 @@
   width: 64px;
   height: 64px;
   margin: 0 auto 26px;
-  background: linear-gradient(135deg, #0b5fa5 0%, #0d3a5c 100%);
+  background: linear-gradient(135deg, #70028f 0%, #410d5c 100%);
   color: #fff;
   font-size: 24px;
-  box-shadow: 0 10px 24px rgba(11, 95, 165, 0.3);
+  box-shadow: 0 10px 24px rgba(112, 2, 143, 0.3);
 }
 
 .booking-info-area .how-it-work-box h3 {
@@ -88,18 +88,18 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  background: #f1f7fc;
+  background: #f8f1fc;
   border-radius: 12px;
   padding: 14px 16px;
   margin-top: 18px !important;
   text-align: left;
-  color: #4a5a68;
+  color: #5e4a68;
   font-size: 14px;
   line-height: 1.6;
 }
 
 .booking-info-area .booking-address-chip i {
-  color: #0b5fa5;
+  color: #70028f;
   margin-top: 3px;
   flex-shrink: 0;
 }
@@ -112,8 +112,8 @@
   gap: 8px;
   padding: 12px 26px;
   border-radius: 50px;
-  border: 1.5px solid #0b5fa5;
-  color: #0b5fa5;
+  border: 1.5px solid #70028f;
+  color: #70028f;
   font-weight: 600;
   font-size: 14px;
   transition: background 0.3s ease, color 0.3s ease;
@@ -124,7 +124,7 @@
 }
 
 .booking-info-area .chevron-button:hover {
-  background: #0b5fa5;
+  background: #70028f;
   color: #fff;
 }
 

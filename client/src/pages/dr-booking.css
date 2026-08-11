@@ -5,7 +5,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 24px;
-  background: linear-gradient(135deg, #081f36 0%, #0d3a5c 55%, #0b5fa5 140%);
+  background: linear-gradient(135deg, #280836 0%, #410d5c 55%, #70028f 140%);
 }
 
 .dr-booking-row {
@@ -93,7 +93,7 @@
 .dr-field input:focus,
 .dr-field textarea:focus {
   outline: none;
-  border-color: #4fc3f7;
+  border-color: #b24ff7;
   background: rgba(255, 255, 255, 0.1);
 }
 
@@ -101,7 +101,7 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: #0b5fa5;
+  background: #70028f;
   color: #fff !important;
   border: none;
   padding: 16px 32px;
@@ -113,7 +113,7 @@
 }
 
 .dr-booking-submit:hover {
-  background: #1478d1;
+  background: #9414d1;
   transform: translateY(-2px);
 }
 
@@ -159,7 +159,7 @@
   width: 70%;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, rgba(79, 195, 247, 0.35), rgba(11, 95, 165, 0) 72%);
+  background: radial-gradient(circle at 35% 30%, rgba(178, 79, 247, 0.35), rgba(112, 2, 143, 0) 72%);
   filter: blur(4px);
   z-index: 0;
 }
@@ -172,7 +172,7 @@
   border-radius: 24px;
   overflow: hidden;
   border: 6px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 30px 60px rgba(3, 15, 28, 0.4);
+  box-shadow: 0 30px 60px rgba(21, 3, 28, 0.4);
 }
 
 .dr-booking-photo-wrap img {

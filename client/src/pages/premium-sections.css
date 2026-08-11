@@ -1,12 +1,12 @@
 /* Premium section styles for the /about page "Testimonials - Happy Clients" block —
    driven by fields on the AboutSection singleton (testimonialsHeading, reviewPlatforms, ...).
-   Palette matches the rest of the site: #0B5FA5 (accent), #1A2733 (dark text), #EAF2FA (cream).
+   Palette matches the rest of the site: #70028F (accent), #321537 (dark text), #F2DDF3 (cream).
    Scoped to .about-testi-premium so it can't leak into other sections. */
 
 .about-testi-premium {
   position: relative;
   padding: 130px 0 140px;
-  background: #EAF2FA;
+  background: #F2DDF3;
   overflow: hidden;
 }
 
@@ -17,7 +17,7 @@
 
 .about-testi-premium .atp-header h2 {
   font-size: 42px;
-  color: #0B5FA5;
+  color: #70028F;
 }
 
 .about-testi-premium .atp-grid {
@@ -38,7 +38,7 @@
   background: #ffffff;
   border-radius: 18px;
   padding: 60px 55px 45px;
-  box-shadow: 0 20px 60px rgba(10, 17, 25, 0.06);
+  box-shadow: 0 20px 60px rgba(21, 10, 25, 0.06);
 }
 
 .about-testi-premium .atp-quote-mark {
@@ -63,7 +63,7 @@
 
 .about-testi-premium .atp-quote-footer h5 {
   margin-bottom: 8px;
-  color: #1A2733;
+  color: #321537;
 }
 
 .about-testi-premium .atp-stars {
@@ -82,7 +82,7 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: rgba(10, 17, 25, 0.15);
+  background: rgba(21, 10, 25, 0.15);
   border: none;
   cursor: pointer;
   padding: 0;
@@ -90,7 +90,7 @@
 }
 
 .about-testi-premium .atp-dot.active {
-  background: #0B5FA5;
+  background: #70028F;
   transform: scale(1.2);
 }
 
@@ -98,13 +98,13 @@
   background: #ffffff;
   border-radius: 18px;
   padding: 36px 34px;
-  box-shadow: 0 20px 60px rgba(10, 17, 25, 0.06);
+  box-shadow: 0 20px 60px rgba(21, 10, 25, 0.06);
 }
 
 .about-testi-premium .atp-platforms h4 {
   font-size: 19px;
   line-height: 1.5;
-  color: #1A2733;
+  color: #321537;
   margin-bottom: 26px;
 }
 
@@ -119,7 +119,7 @@
   align-items: center;
   gap: 16px;
   padding: 16px 0;
-  border-top: 1px solid rgba(10, 17, 25, 0.07);
+  border-top: 1px solid rgba(21, 10, 25, 0.07);
 }
 
 .about-testi-premium .atp-platforms li:first-child {
@@ -135,14 +135,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #EAF2FA;
-  color: #0B5FA5;
+  background: #F2DDF3;
+  color: #70028F;
   font-size: 18px;
 }
 
 .about-testi-premium .atp-p-text h6 {
   margin-bottom: 4px;
-  color: #1A2733;
+  color: #321537;
   font-size: 16px;
 }
 
@@ -150,7 +150,7 @@
   display: inline-block;
   font-size: 13px;
   font-weight: 600;
-  color: #0B5FA5;
+  color: #70028F;
   border: 1px solid rgba(217, 107, 61, 0.35);
   border-radius: 50px;
   padding: 3px 14px;

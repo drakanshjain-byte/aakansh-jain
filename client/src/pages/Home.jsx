@@ -62,7 +62,7 @@ export default function Home() {
         style={
           slide?.image?.url
             ? {
-                backgroundImage: `linear-gradient(135deg, rgba(8,31,54,0.88) 0%, rgba(13,58,92,0.85) 55%, rgba(11,95,165,0.8) 130%), url(${slide.image.url})`,
+                backgroundImage: `linear-gradient(135deg, rgba(40, 8, 54, 0.88) 0%, rgba(65, 13, 92, 0.85) 55%, rgba(112, 2, 143, 0.8) 130%), url(${slide.image.url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }
@@ -252,7 +252,7 @@ export default function Home() {
       <section className="services-area p-relative fix">
         <div
           className="container-box pt-60 pb-150"
-          style={{ backgroundColor: '#EAF2FA' }}
+          style={{ backgroundColor: '#F2DDF3' }}
         >
           <div className="container">
             <div className="row justify-content-center mb-20">

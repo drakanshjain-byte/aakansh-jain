@@ -61,7 +61,7 @@
   position: absolute;
   top: 16px;
   left: 16px;
-  background: #0B5FA5;
+  background: #70028F;
   color: #fff;
   font-size: 12px;
   font-weight: 600;
@@ -91,12 +91,12 @@
 }
 
 .home-blog-scope .home-blog-card-body h4 a {
-  color: #1A2733;
+  color: #321537;
   transition: color 0.25s ease;
 }
 
 .home-blog-scope .home-blog-card-body h4 a:hover {
-  color: #0B5FA5;
+  color: #70028F;
 }
 
 .home-blog-scope .home-blog-card-body p {
@@ -117,7 +117,7 @@
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #0B5FA5;
+  color: #70028F;
   width: fit-content;
 }
 
@@ -148,7 +148,7 @@
   border-radius: 50%;
   border: 1px solid #EFE7DF;
   background: #fff;
-  color: #1A2733;
+  color: #321537;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -159,8 +159,8 @@
 }
 
 .home-blog-scope .home-blog-active .slick-arrow:hover {
-  background: #0B5FA5;
-  border-color: #0B5FA5;
+  background: #70028F;
+  border-color: #70028F;
   color: #fff;
 }
 

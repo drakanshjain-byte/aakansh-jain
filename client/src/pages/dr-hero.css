@@ -6,7 +6,7 @@
   position: relative;
   overflow: hidden;
   padding: 170px 0 90px;
-  background: linear-gradient(135deg, #081f36 0%, #0d3a5c 55%, #0b5fa5 130%);
+  background: linear-gradient(135deg, #280836 0%, #410d5c 55%, #70028f 130%);
 }
 
 .dr-hero-glow {
@@ -16,7 +16,7 @@
   width: 620px;
   height: 620px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(79, 195, 247, 0.25) 0%, rgba(79, 195, 247, 0) 70%);
+  background: radial-gradient(circle, rgba(178, 79, 247, 0.25) 0%, rgba(178, 79, 247, 0) 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -54,7 +54,7 @@
 }
 
 .dr-hero-eyebrow i {
-  color: #4fc3f7;
+  color: #b24ff7;
   font-size: 12px;
 }
 
@@ -86,7 +86,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #0b5fa5;
+  background: #70028f;
   color: #fff !important;
   padding: 17px 34px;
   border-radius: 50px;
@@ -97,7 +97,7 @@
 }
 
 .dr-hero-btn:hover {
-  background: #1478d1;
+  background: #9414d1;
   transform: translateY(-2px);
   color: #fff;
 }
@@ -159,7 +159,7 @@
   top: 0;
   right: 6%;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, rgba(79, 195, 247, 0.4), rgba(11, 95, 165, 0) 72%);
+  background: radial-gradient(circle at 32% 30%, rgba(178, 79, 247, 0.4), rgba(112, 2, 143, 0) 72%);
   filter: blur(6px);
   z-index: 0;
 }
@@ -172,7 +172,7 @@
   border-radius: 28px;
   overflow: hidden;
   border: 6px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 30px 60px rgba(3, 15, 28, 0.45);
+  box-shadow: 0 30px 60px rgba(21, 3, 28, 0.45);
 }
 
 .dr-hero-photo-wrap img {
@@ -194,7 +194,7 @@
   background: #fff;
   border-radius: 18px;
   padding: 14px 20px;
-  box-shadow: 0 20px 40px rgba(3, 15, 28, 0.2);
+  box-shadow: 0 20px 40px rgba(21, 3, 28, 0.2);
 }
 
 .dr-hero-float-card img {
@@ -206,7 +206,7 @@
   display: block;
   font-family: 'Marcellus', serif;
   font-size: 19px;
-  color: #0b2a44;
+  color: #310b44;
   line-height: 1.2;
 }
 
@@ -223,14 +223,14 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #0b5fa5;
+  background: #70028f;
   color: #fff;
   border-radius: 16px;
   padding: 13px 18px;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.35;
-  box-shadow: 0 15px 30px rgba(11, 95, 165, 0.35);
+  box-shadow: 0 15px 30px rgba(112, 2, 143, 0.35);
 }
 
 .dr-hero-badge i {

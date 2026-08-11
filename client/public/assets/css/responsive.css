@@ -2368,7 +2368,7 @@
         display: block;
         height: 3px;
         margin-top: 3px;
-        border-top: 3px solid #1A2733;
+        border-top: 3px solid #321537;
     }
 
     .mean-container .mean-nav ul li.has-sub i {
@@ -2602,7 +2602,7 @@
     }
 
     .header-two .mean-container a.meanmenu-reveal {
-        color: #1A2733;
+        color: #321537;
         border: 1px solid #646464;
     }
 
@@ -2663,8 +2663,8 @@
     }
 
     .mean-container a.meanmenu-reveal {
-        color: #1A2733;
-        border: 1px solid #1A2733;
+        color: #321537;
+        border: 1px solid #321537;
     }
 
     .copyright-wrap ul {
@@ -3272,7 +3272,7 @@
     }
 
     .responsive i {
-        color: #002e5b;
+        color: #3f005b;
         font-size: 25px;
     }
 
@@ -3281,7 +3281,7 @@
         background: no-repeat;
         padding: 20px 0;
         margin-top: 21px;
-        background: #002e5b;
+        background: #3f005b;
     }
 
     .main-menu {

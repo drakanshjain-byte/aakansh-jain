@@ -66,7 +66,7 @@ export default function Footer() {
     <footer className="footer-bg footer-p fix">
       <div
         className="footer-top pt-60"
-        style={{ backgroundColor: '#062236' }}
+        style={{ backgroundColor: '#250636' }}
       >
         <div className="container f-logo-area">
           <div className="row align-items-center">
