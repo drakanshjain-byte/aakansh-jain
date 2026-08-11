@@ -1,0 +1,580 @@
+/* Online Consultation page — booking form, fee table, payment card, terms and the
+   Informed Consent popup. Palette matches the rest of the redesigned pages:
+   #70028F accent, #321537 ink, #F2DDF3 cream. Scoped entirely under .oc-section /
+   .oc-modal-overlay so it can't leak into other pages. */
+
+.oc-section {
+  --oc-bg: #F2DDF3;
+  --oc-card: #ffffff;
+  --oc-ink: #321537;
+  --oc-muted: #6b6f76;
+  --oc-accent: #70028F;
+  --oc-accent-soft: rgba(112, 2, 143, 0.08);
+  --oc-line: rgba(21, 10, 25, 0.1);
+
+  background: var(--oc-bg);
+  padding: 100px 0 140px;
+}
+
+.oc-section *,
+.oc-modal * {
+  box-sizing: border-box;
+}
+
+.oc-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Header ---------- */
+
+.oc-head {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.oc-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--oc-accent);
+  margin-bottom: 18px;
+}
+
+.oc-eyebrow::before,
+.oc-eyebrow::after {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--oc-accent);
+  opacity: 0.5;
+  display: inline-block;
+}
+
+.oc-head h2 {
+  font-family: 'Marcellus', serif;
+  font-size: 34px;
+  line-height: 1.35;
+  color: var(--oc-ink);
+  margin: 0 0 16px;
+}
+
+.oc-head p {
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--oc-muted);
+  margin: 0 0 8px;
+}
+
+.oc-head .oc-lead {
+  color: var(--oc-accent);
+  font-weight: 600;
+}
+
+/* ---------- Process strip ---------- */
+
+.oc-process {
+  background: var(--oc-card);
+  border-radius: 16px;
+  padding: 34px 24px;
+  margin-bottom: 50px;
+  box-shadow: 0 10px 40px rgba(50, 21, 55, 0.06);
+}
+
+.oc-process-heading {
+  font-family: 'Marcellus', serif;
+  font-size: 20px;
+  color: var(--oc-ink);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.oc-process-track {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px 0;
+}
+
+.oc-process-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oc-process-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--oc-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--oc-accent);
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.oc-process-step p {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--oc-ink);
+  width: 92px;
+  text-align: center;
+  margin: 10px 0 0;
+}
+
+.oc-process-step {
+  flex-direction: column;
+  width: 110px;
+  position: relative;
+}
+
+.oc-process-arrow {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .oc-process-arrow {
+    display: block;
+    position: absolute;
+    top: 26px;
+    right: -18px;
+    font-size: 26px;
+    color: var(--oc-accent);
+    opacity: 0.5;
+  }
+}
+
+/* ---------- Layout grid ---------- */
+
+.oc-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 991px) {
+  .oc-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.oc-form-card,
+.oc-card {
+  background: var(--oc-card);
+  border-radius: 16px;
+  padding: 34px;
+  box-shadow: 0 10px 40px rgba(50, 21, 55, 0.06);
+}
+
+.oc-form-card h3 {
+  font-family: 'Marcellus', serif;
+  font-size: 24px;
+  color: var(--oc-ink);
+  margin: 0 0 22px;
+}
+
+.oc-field {
+  margin-bottom: 18px;
+}
+
+.oc-field label {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--oc-ink);
+  margin-bottom: 8px;
+}
+
+.oc-field input[type='text'],
+.oc-field input[type='tel'],
+.oc-field input[type='date'],
+.oc-field textarea,
+.oc-sub-input {
+  width: 100%;
+  border: 1px solid var(--oc-line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  color: var(--oc-ink);
+  background: #fbfafc;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.oc-field input:focus,
+.oc-field textarea:focus,
+.oc-sub-input:focus {
+  border-color: var(--oc-accent);
+}
+
+.oc-sub-input {
+  margin-top: 10px;
+}
+
+.oc-radio-row {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.oc-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  color: var(--oc-ink);
+  cursor: pointer;
+}
+
+.oc-radio input {
+  accent-color: var(--oc-accent);
+  width: 16px;
+  height: 16px;
+}
+
+.oc-consent-row {
+  margin: 22px 0;
+  padding-top: 18px;
+  border-top: 1px dashed var(--oc-line);
+}
+
+.oc-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  color: var(--oc-ink);
+  cursor: pointer;
+}
+
+.oc-checkbox input {
+  margin-top: 3px;
+  accent-color: var(--oc-accent);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.oc-view-consent {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--oc-accent);
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.oc-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--oc-accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 28px;
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.oc-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.oc-submit-icon {
+  display: inline-flex;
+}
+
+.oc-status {
+  margin-top: 12px;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  color: var(--oc-accent);
+}
+
+/* ---------- Side cards: fee table + payment ---------- */
+
+.oc-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.oc-fee-heading {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  color: var(--oc-ink);
+  margin: 0 0 16px;
+  line-height: 1.6;
+}
+
+.oc-fee-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+}
+
+.oc-fee-table th,
+.oc-fee-table td {
+  border: 1px solid var(--oc-line);
+  padding: 10px 12px;
+  text-align: left;
+  color: var(--oc-ink);
+}
+
+.oc-fee-table th {
+  background: var(--oc-accent-soft);
+  font-weight: 600;
+}
+
+.oc-fee-note {
+  margin: 14px 0 0;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--oc-muted);
+}
+
+.oc-card h4 {
+  font-family: 'Marcellus', serif;
+  font-size: 20px;
+  color: var(--oc-ink);
+  margin: 0 0 14px;
+}
+
+.oc-payment-brands {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  color: var(--oc-accent);
+  margin-bottom: 18px;
+}
+
+.oc-paytm {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #002E6E;
+}
+
+.oc-payment-visuals {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.oc-payment-photo img {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--oc-accent-soft);
+}
+
+.oc-payment-photo p {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  color: var(--oc-muted);
+  text-align: center;
+  max-width: 100px;
+  margin: 8px 0 0;
+}
+
+.oc-payment-qr img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+  border: 1px solid var(--oc-line);
+  border-radius: 8px;
+  padding: 6px;
+  background: #fff;
+}
+
+.oc-payment-line {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  color: var(--oc-ink);
+  margin: 0 0 6px;
+}
+
+.oc-payment-note {
+  margin-top: 12px;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--oc-muted);
+}
+
+/* ---------- Terms ---------- */
+
+.oc-terms {
+  background: var(--oc-card);
+  border-radius: 16px;
+  padding: 34px;
+  box-shadow: 0 10px 40px rgba(50, 21, 55, 0.06);
+}
+
+.oc-terms h3 {
+  font-family: 'Marcellus', serif;
+  font-size: 22px;
+  color: var(--oc-ink);
+  margin: 0 0 18px;
+}
+
+.oc-terms ol {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--oc-muted);
+  padding-left: 20px;
+  margin: 0;
+}
+
+.oc-terms li {
+  margin-bottom: 10px;
+}
+
+.oc-regulation {
+  margin: 20px 0 0;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--oc-muted);
+}
+
+/* ---------- Informed Consent popup ---------- */
+
+.oc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(21, 10, 25, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px;
+  overflow-y: auto;
+}
+
+.oc-modal {
+  background: #fff;
+  border-radius: 16px;
+  max-width: 780px;
+  width: 100%;
+  padding: 36px;
+  position: relative;
+  font-family: 'Sora', sans-serif;
+  color: var(--oc-ink, #321537);
+}
+
+.oc-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #f2ddf3;
+  color: #321537;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.oc-modal h3 {
+  font-family: 'Marcellus', serif;
+  font-size: 24px;
+  margin: 0 0 20px;
+  padding-right: 30px;
+}
+
+.oc-modal h4 {
+  font-family: 'Marcellus', serif;
+  font-size: 16px;
+  margin: 22px 0 10px;
+  color: #70028F;
+}
+
+.oc-modal p {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 0 10px;
+  color: #4a4550;
+}
+
+.oc-modal ul {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4a4550;
+  padding-left: 20px;
+  margin: 0 0 10px;
+}
+
+.oc-modal li {
+  margin-bottom: 6px;
+}
+
+.oc-doctor-id {
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.oc-consent-footer {
+  font-weight: 600;
+  color: var(--oc-ink, #321537) !important;
+}
+
+.oc-modal-actions {
+  border-top: 1px dashed rgba(21, 10, 25, 0.15);
+  margin-top: 20px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.oc-modal-done {
+  background: #70028F;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}

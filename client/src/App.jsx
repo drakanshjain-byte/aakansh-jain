@@ -12,6 +12,7 @@ import Blog from './pages/Blog.jsx';
 import BlogDetails from './pages/BlogDetails.jsx';
 import Faq from './pages/Faq.jsx';
 import Contact from './pages/Contact.jsx';
+import Consultation from './pages/Consultation.jsx';
 import ThankYou from './pages/ThankYou.jsx';
 import NotFound from './pages/NotFound.jsx';
 
@@ -41,6 +42,7 @@ export default function App() {
       <Route path="/blog/:slug" element={<BlogDetails />} />
       <Route path="/faq" element={<Faq />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/online-consultation" element={<Consultation />} />
       <Route path="/thank-you" element={<ThankYou />} />
 
       {/* Admin */}

@@ -4,6 +4,7 @@ import api from '../../lib/api.js';
 const TABS = [
   { key: 'booking', label: 'Booking Requests' },
   { key: 'contact', label: 'Contact Messages' },
+  { key: 'consultation', label: 'Online Consultation Requests' },
   { key: 'newsletter', label: 'Newsletter Signups' },
 ];
 
@@ -50,7 +51,7 @@ export default function Submissions() {
           <thead>
             <tr>
               {tab !== 'newsletter' && <th>Name</th>}
-              <th>Email</th>
+              {tab !== 'consultation' && <th>Email</th>}
               {tab === 'booking' && (
                 <>
                   <th>Phone</th>
@@ -59,6 +60,14 @@ export default function Submissions() {
                 </>
               )}
               {tab === 'contact' && <th>Subject</th>}
+              {tab === 'consultation' && (
+                <>
+                  <th>Mobile</th>
+                  <th>Appointment Type</th>
+                  <th>Reg. ID</th>
+                  <th>Preferred Date</th>
+                </>
+              )}
               {tab !== 'newsletter' && <th>Message</th>}
               <th>Received</th>
               {tab !== 'newsletter' && <th>Status</th>}
@@ -69,7 +78,7 @@ export default function Submissions() {
             {items.map((item) => (
               <tr key={item._id}>
                 {tab !== 'newsletter' && <td>{item.name}</td>}
-                <td>{item.email}</td>
+                {tab !== 'consultation' && <td>{item.email}</td>}
                 {tab === 'booking' && (
                   <>
                     <td>{item.phone}</td>
@@ -78,12 +87,20 @@ export default function Submissions() {
                   </>
                 )}
                 {tab === 'contact' && <td>{item.subject}</td>}
+                {tab === 'consultation' && (
+                  <>
+                    <td>{item.mobile}</td>
+                    <td>{item.appointmentType}</td>
+                    <td>{item.reviewRegistrationId}</td>
+                    <td>{item.preferredDate}</td>
+                  </>
+                )}
                 {tab !== 'newsletter' && <td style={{ maxWidth: 260 }}>{item.message}</td>}
                 <td>{new Date(item.createdAt).toLocaleString()}</td>
                 {tab !== 'newsletter' && (
                   <td>
                     <select value={item.status} onChange={(e) => updateStatus(item._id, e.target.value)}>
-                      {(tab === 'booking' ? ['new', 'contacted', 'closed'] : ['new', 'read', 'closed']).map((s) => (
+                      {(tab === 'contact' ? ['new', 'read', 'closed'] : ['new', 'contacted', 'closed']).map((s) => (
                         <option key={s} value={s}>{s}</option>
                       ))}
                     </select>

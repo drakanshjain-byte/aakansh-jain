@@ -4,6 +4,7 @@ import rateLimit from 'express-rate-limit';
 import { body } from 'express-validator';
 import BookingSubmission from '../models/BookingSubmission.js';
 import ContactSubmission from '../models/ContactSubmission.js';
+import ConsultationSubmission from '../models/ConsultationSubmission.js';
 import NewsletterSignup from '../models/NewsletterSignup.js';
 import { protect } from '../middleware/auth.js';
 import { checkValidation } from '../middleware/errorHandler.js';
@@ -121,6 +122,68 @@ router.delete(
   protect,
   asyncHandler(async (req, res) => {
     await ContactSubmission.findByIdAndDelete(req.params.id);
+    res.json({ success: true, data: {} });
+  })
+);
+
+// ----- Online Consultation -----
+router.post(
+  '/consultation',
+  formLimiter,
+  [
+    body('name').trim().notEmpty().withMessage('Name is required'),
+    body('mobile').trim().notEmpty().withMessage('Mobile number is required'),
+    body('appointmentType').optional().isIn(['new', 'review']),
+    body('consentAgreed').custom((value) => value === true || value === 'true').withMessage('You must agree to the Informed Consent for Telemedicine Consultation'),
+    body('message').optional().isLength({ max: 5000 }),
+  ],
+  checkValidation,
+  asyncHandler(async (req, res) => {
+    const { name, mobile, appointmentType, reviewRegistrationId, preferredDate, message, consentAgreed } = req.body;
+    const submission = await ConsultationSubmission.create({
+      name,
+      mobile,
+      appointmentType,
+      reviewRegistrationId,
+      preferredDate,
+      message,
+      consentAgreed: consentAgreed === true || consentAgreed === 'true',
+    });
+    res.status(201).json({ success: true, data: submission });
+  })
+);
+
+router.get(
+  '/consultation',
+  protect,
+  asyncHandler(async (req, res) => {
+    const items = await ConsultationSubmission.find().sort({ createdAt: -1 });
+    res.json({ success: true, count: items.length, data: items });
+  })
+);
+
+router.patch(
+  '/consultation/:id',
+  protect,
+  asyncHandler(async (req, res) => {
+    const item = await ConsultationSubmission.findByIdAndUpdate(
+      req.params.id,
+      { status: req.body.status },
+      { new: true, runValidators: true }
+    );
+    if (!item) {
+      res.status(404);
+      throw new Error('Consultation submission not found');
+    }
+    res.json({ success: true, data: item });
+  })
+);
+
+router.delete(
+  '/consultation/:id',
+  protect,
+  asyncHandler(async (req, res) => {
+    await ConsultationSubmission.findByIdAndDelete(req.params.id);
     res.json({ success: true, data: {} });
   })
 );

@@ -115,8 +115,9 @@ export const RESOURCES = [
     key: 'nav-items', label: 'Nav Menu', api: '/nav-items',
     fields: [
       { name: 'label', label: 'Label', type: 'text', required: true },
-      { name: 'link', label: 'Link', type: 'text', required: true },
+      { name: 'link', label: 'Link (e.g. /online-consultation)', type: 'text', required: true },
       { name: 'order', label: 'Order', type: 'number' },
+      { name: 'openInNewTab', label: 'Open In A New Tab', type: 'boolean' },
     ],
   },
 ];
@@ -236,6 +237,73 @@ export const SINGLETONS = [
     ],
   },
   {
+    key: 'consultation-section', label: 'Online Consultation Page (/online-consultation)', api: '/consultation-section',
+    fields: [
+      { name: 'eyebrow', label: 'Small Eyebrow Label', type: 'text' },
+      { name: 'introHeading', label: 'Intro Heading', type: 'textarea' },
+      { name: 'introParagraph1', label: 'Intro Paragraph 1', type: 'textarea' },
+      { name: 'introParagraph2', label: 'Intro Paragraph 2', type: 'textarea' },
+
+      { name: 'processHeading', label: '"How It Works" Strip - Heading', type: 'text' },
+      { name: 'processSteps', label: '"How It Works" Steps (JSON array: [{ "icon": "fa-light fa-file-pen", "title": "Fill Up Our Form" }])', type: 'json' },
+
+      { name: 'formHeading', label: 'Booking Form - Heading', type: 'text' },
+      { name: 'consentCheckboxLabel', label: 'Consent Checkbox Label', type: 'text' },
+      { name: 'viewConsentLinkText', label: '"View Informed Consent" Link Text', type: 'text' },
+      { name: 'submitButtonText', label: 'Submit Button Text', type: 'text' },
+
+      { name: 'feeTableHeading', label: 'Fee Table - Heading', type: 'textarea' },
+      { name: 'feeTableNote', label: 'Fee Table - Note (below table)', type: 'text' },
+      { name: 'feeRows', label: 'Fee Table Rows (JSON array: [{ "type": "Video", "client": "New", "fee": "\u20b9 1000", "duration": "10 min" }])', type: 'json' },
+
+      { name: 'paymentHeading', label: 'Payment Section - Heading', type: 'text' },
+      { name: 'upiId', label: 'UPI ID', type: 'text' },
+      { name: 'paymentMobile', label: 'Payment Mobile Number', type: 'text' },
+      { name: 'paymentNote', label: 'Payment Note', type: 'textarea' },
+      { name: 'paymentQrImage', label: 'Payment QR Code Image', type: 'image' },
+      { name: 'paymentDoctorPhoto', label: 'Doctor Payment Photo (circular "scan to pay" avatar)', type: 'image' },
+      { name: 'paymentDoctorPhotoCaption', label: 'Doctor Payment Photo Caption', type: 'text' },
+
+      { name: 'termsHeading', label: 'Terms & Conditions - Heading', type: 'text' },
+      { name: 'termsItems', label: 'Terms & Conditions Items (one per line)', type: 'lines' },
+      { name: 'regulationNote', label: 'Regulation Note (bottom of page)', type: 'textarea' },
+
+      { name: 'consentModalTitle', label: 'Consent Popup - Title', type: 'text' },
+
+      { name: 'consentGuidelinesHeading', label: 'Consent Popup - Guidelines Heading', type: 'text' },
+      { name: 'consentGuidelinesItems', label: 'Consent Popup - Guidelines Items (one per line)', type: 'lines' },
+
+      { name: 'consentDoctorHeading', label: 'Consent Popup - Doctor ID Heading', type: 'text' },
+      { name: 'consentDoctorName', label: 'Consent Popup - Doctor Name', type: 'text' },
+      { name: 'consentDoctorQualification', label: 'Consent Popup - Doctor Qualification', type: 'text' },
+      { name: 'consentDoctorCouncil', label: 'Consent Popup - Medical Council', type: 'text' },
+      { name: 'consentDoctorRegNo', label: 'Consent Popup - Registration No.', type: 'text' },
+
+      { name: 'consentAppointmentSlotsHeading', label: 'Consent Popup - Appointment Slots Heading', type: 'text' },
+      { name: 'consentAppointmentSlotsText', label: 'Consent Popup - Appointment Slots Text', type: 'textarea' },
+
+      { name: 'consentIntroHeading', label: 'Consent Popup - Introduction Heading', type: 'text' },
+      { name: 'consentIntroText', label: 'Consent Popup - Introduction Text', type: 'textarea' },
+      { name: 'consentIntroItems', label: 'Consent Popup - Introduction Items (one per line)', type: 'lines' },
+      { name: 'consentIntroFooter', label: 'Consent Popup - Introduction Footer Text', type: 'textarea' },
+
+      { name: 'consentBenefitsHeading', label: 'Consent Popup - Benefits Heading', type: 'text' },
+      { name: 'consentBenefitsItems', label: 'Consent Popup - Benefits Items (one per line)', type: 'lines' },
+
+      { name: 'consentRisksHeading', label: 'Consent Popup - Risks Heading', type: 'text' },
+      { name: 'consentRisksIntro', label: 'Consent Popup - Risks Intro Text', type: 'textarea' },
+      { name: 'consentRisksItems', label: 'Consent Popup - Risks Items (one per line)', type: 'lines' },
+
+      { name: 'consentFinancialText', label: 'Consent Popup - Financial Responsibility Text', type: 'textarea' },
+
+      { name: 'consentExplicitHeading', label: 'Consent Popup - Explicit Consent Heading', type: 'text' },
+      { name: 'consentExplicitIntro', label: 'Consent Popup - Explicit Consent Intro Text', type: 'text' },
+      { name: 'consentExplicitItems', label: 'Consent Popup - Explicit Consent Items (one per line)', type: 'lines' },
+
+      { name: 'consentFooterText', label: 'Consent Popup - Footer Text', type: 'textarea' },
+    ],
+  },
+  {
     key: 'booking-section', label: 'Booking Section', api: '/booking-section',
     fields: [
       { name: 'heading', label: 'Heading', type: 'text' },
@@ -304,6 +372,13 @@ export const SINGLETONS = [
   },
   {
     key: 'page-meta-thank-you', label: 'Browser Tab Title - Thank You Page', api: '/page-meta/thank-you',
+    fields: [
+      { name: 'title', label: 'Browser Tab Title', type: 'text' },
+      { name: 'metaDescription', label: 'Meta Description (shown in Google search results)', type: 'textarea' },
+    ],
+  },
+  {
+    key: 'page-meta-online-consultation', label: 'Browser Tab Title - Online Consultation Page', api: '/page-meta/online-consultation',
     fields: [
       { name: 'title', label: 'Browser Tab Title', type: 'text' },
       { name: 'metaDescription', label: 'Meta Description (shown in Google search results)', type: 'textarea' },
