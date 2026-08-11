@@ -11,7 +11,7 @@ export default function ThankYou() {
     <Layout>
       <PageMeta pageKey="thank-you" fallbackTitle="Thank You - Natural Cosmetic Surgery Centre" />
       <Breadcrumb title="Thank You" />
-      <section id="contact" className="contact-area after-none contact-bg pt-60 pb-120 p-relative fix">
+      <section id="contact" className="contact-area after-none pt-60 pb-120 p-relative fix">
         <div className="container text-center">
           <h2>Thank you for reaching out!</h2>
           <p>We've received your message and will get back to you shortly.</p>

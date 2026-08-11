@@ -19,7 +19,7 @@
 .admin-loading { padding: 40px; text-align: center; }
 .admin-card { background: #fff; border: 1px solid #e6e1db; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
 .admin-table { width: 100%; border-collapse: collapse; background: #fff; }
-.admin-table th, .admin-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; vertical-align: middle; }
+.admin-table th, .admin-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; font-size: 14px; vertical-align: middle; overflow-wrap: anywhere; word-break: break-word; }
 .admin-table th { background: #faf9f7; font-weight: 600; }
 .admin-table img.thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 4px; }
 .admin-btn { background: #a9683b; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px; }
