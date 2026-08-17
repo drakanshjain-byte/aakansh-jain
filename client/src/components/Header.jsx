@@ -34,7 +34,7 @@ export default function Header() {
       .catch(() => {});
   }, []);
 
-  const logoUrl = settings?.logo?.url || '/assets/img/logo/logo.png';
+  const logoUrl = '/assets/img/logo/logo.png';
   const phone = settings?.topContactPhone || '9278479456';
   const ctaText = settings?.headerCtaText || 'Get Appointment';
   const ctaLink = settings?.headerCtaLink || '/contact';

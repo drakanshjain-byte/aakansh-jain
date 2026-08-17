@@ -43,7 +43,7 @@ export default function Footer() {
     api.get('/services').then((res) => setServices(res.data.data)).catch(() => {});
   }, []);
 
-  const logoUrl = settings?.logoAlt?.url || settings?.logo?.url || '/assets/img/logo/f_logo.png';
+  const logoUrl = '/assets/img/logo/f_logo.png';
 
   // "Our Services" column is always generated live from the actual Services collection —
   // whatever the admin adds/removes there is exactly what shows up here, nothing hardcoded.

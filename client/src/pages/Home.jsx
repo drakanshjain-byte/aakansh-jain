@@ -59,21 +59,15 @@ export default function Home() {
       <section
         id="home"
         className="dr-hero p-relative fix"
-        style={
-          slide?.image?.url
-            ? {
-                backgroundImage: `linear-gradient(135deg, rgba(40, 8, 54, 0.88) 0%, rgba(65, 13, 92, 0.85) 55%, rgba(112, 2, 143, 0.8) 130%), url(${slide.image.url})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }
-            : undefined
-        }
+        style={{
+          backgroundImage: `linear-gradient(90deg, rgba(24, 6, 32, 0.94) 0%, rgba(38, 8, 51, 0.86) 30%, rgba(50, 10, 66, 0.35) 58%, rgba(50, 10, 66, 0) 78%), url(/assets/img/slider/hero-bg-lady.png)`,
+        }}
       >
         <div className="dr-hero-glow" aria-hidden="true"></div>
         <div className="dr-hero-dots" aria-hidden="true"></div>
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-7 col-md-12">
               <div className="fade-slide bottom">
                 <span className="dr-hero-eyebrow">
                   <i className="fa-solid fa-sparkles"></i> {slide?.eyebrowText || 'Best In Town'}
@@ -81,13 +75,21 @@ export default function Home() {
                 <h1 className="dr-hero-title">{slide?.headline || 'Transforming Looks, Restoring Confidence'}</h1>
                 <p className="dr-hero-subtitle">
                   {slide?.subheading ||
-                    'Plastic surgery is a specialized medical field that focuses on enhancing and restoring function through surgical and non-surgical techniques.'}
+                    'Expert breast surgery and cosmetic care, tailored to your body and delivered with precision, discretion, and compassion.'}
                 </p>
 
                 <div className="dr-hero-actions">
                   <Link to={slide?.ctaLink || '/contact'} className="dr-hero-btn">
                     {slide?.ctaText || 'Get Appointment'} <i className="fa-light fa-arrow-right-long"></i>
                   </Link>
+
+                  <div className="dr-hero-float-card">
+                    <img src="/assets/img/slider/h-client-img.png" alt="Happy clients" />
+                    <div>
+                      <strong>{slide?.happyClientsCount || '2,000+'}</strong>
+                      <span>{slide?.happyClientsLabel || 'Happy Clients'}</span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="dr-hero-stats">
@@ -103,32 +105,6 @@ export default function Home() {
                     <h3>{slide?.counter3Value || '20+'}</h3>
                     <p>{slide?.counter3Label || 'Award Winner'}</p>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-lg-6 col-md-12">
-              <div className="dr-hero-visual fade-slide right">
-                <div className="dr-hero-blob" aria-hidden="true"></div>
-                <div className="dr-hero-photo-wrap">
-                  <img src={slide?.heroImage?.url || '/assets/img/slider/header-img.png'} alt={slide?.headline || 'Dr. Aakansh Jain'} />
-                </div>
-
-                <div className="dr-hero-float-card">
-                  <img src={slide?.clientAvatarsImage?.url || '/assets/img/slider/h-client-img.png'} alt="Happy clients" />
-                  <div>
-                    <strong>{slide?.happyClientsCount || '2,000+'}</strong>
-                    <span>{slide?.happyClientsLabel || 'Happy Clients'}</span>
-                  </div>
-                </div>
-
-                <div className="dr-hero-badge">
-                  <i className="fa-solid fa-award"></i>
-                  <span>
-                    Award-Winning
-                    <br />
-                    Cosmetic Care
-                  </span>
                 </div>
               </div>
             </div>
