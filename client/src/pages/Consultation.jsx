@@ -30,8 +30,8 @@ const FALLBACK = {
   feeTableHeading: 'Below given is a comprehensive list of the online consultation fee that hold good with Dr. Aakansh Jain.',
   feeTableNote: 'Review clients should confirm their registration ID No. prior to consultation.',
   feeRows: [
-    { type: 'Video', client: 'New', fee: '₹ 1000', duration: '10 min' },
-    { type: 'Video', client: 'Review', fee: '₹ 500', duration: '10 min' },
+    { type: 'Video', client: 'New', fee: '₹ 500', duration: '10 min' },
+    { type: 'Video', client: 'Review', fee: '₹ 400', duration: '10 min' },
   ],
   paymentHeading: 'Online Payment',
   upiId: 'drakanshjain@okhdfcbank',
