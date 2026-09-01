@@ -156,6 +156,7 @@
 
 .dr-hero-stats {
   display: flex;
+  align-items: flex-start;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   padding-top: 32px;
   padding-bottom: 40px;
@@ -165,11 +166,9 @@
 .dr-hero-stat {
   flex: 1;
   padding-right: 22px;
-  border-right: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .dr-hero-stat:last-child {
-  border-right: none;
   padding-right: 0;
 }
 
