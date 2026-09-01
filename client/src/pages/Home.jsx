@@ -71,9 +71,6 @@ export default function Home() {
           <div className="row align-items-center">
             <div className="col-lg-7 col-md-12">
               <div className="fade-slide bottom">
-                <span className="dr-hero-eyebrow">
-                  <i className="fa-solid fa-sparkles"></i> {slide?.eyebrowText || 'Best In Town'}
-                </span>
                 <h1 className="dr-hero-title">{slide?.headline || 'Transforming Looks, Restoring Confidence'}</h1>
                 <p className="dr-hero-subtitle">
                   {slide?.subheading ||
@@ -96,16 +93,16 @@ export default function Home() {
 
                 <div className="dr-hero-stats">
                   <div className="dr-hero-stat">
-                    <h3>{slide?.counter1Value || '50k+'}</h3>
-                    <p>{slide?.counter1Label || 'Clients Review'}</p>
+                    <h3>{slide?.counter1Value || '15+'}</h3>
+                    <p>{slide?.counter1Label || 'Years Experience'}</p>
                   </div>
                   <div className="dr-hero-stat">
-                    <h3>{slide?.counter2Value || '100+'}</h3>
-                    <p>{slide?.counter2Label || 'Expert Surgeon'}</p>
+                    <h3>{slide?.counter2Value || '5,000+'}</h3>
+                    <p>{slide?.counter2Label || 'Procedures Done'}</p>
                   </div>
                   <div className="dr-hero-stat">
-                    <h3>{slide?.counter3Value || '20+'}</h3>
-                    <p>{slide?.counter3Label || 'Award Winner'}</p>
+                    <h3>{slide?.counter3Value || '98%'}</h3>
+                    <p>{slide?.counter3Label || 'Patient Satisfaction'}</p>
                   </div>
                 </div>
               </div>
@@ -127,16 +124,6 @@ export default function Home() {
                 <div className="img">
                   <img src={data.homeAbout?.primaryImage?.url || '/assets/img/features/about-img-01.png'} alt="img" />
                 </div>
-                <div className="cartifact-box">
-                  <div className="icon">
-                    <div>
-                      <img src="/assets/img/features/ab-cartficat-icon.svg" alt="img" />
-                    </div>
-                  </div>
-                  <div className="text">
-                    <h3>{data.homeAbout?.badgeText || 'Best Awarded Company'}</h3>
-                  </div>
-                </div>
                 <div className="animations-01">
                   <img src="/assets/img/features/lef-ani-abou.png" alt="an-img-01" />
                 </div>
@@ -157,7 +144,7 @@ export default function Home() {
                     </div>
                     <p className="pline">
                       {data.homeAbout?.description ||
-                        'Plastic surgery is a specialized branch of medicine that focuses on restoring, enhancing, or reshaping the body for both medical and aesthetic purposes. It helps people improve their appearance.'}
+                        'Every consultation starts with listening — to your goals, your concerns, and what results would actually mean for you. From there, each procedure is planned around your own anatomy and delivered with the same precision and care we\u2019d want for our own family.'}
                     </p>
                   </div>
                 </div>
@@ -339,7 +326,7 @@ export default function Home() {
                     )}
                   </div>
                   <div className="sbtn mt-15" style={{ marginTop: 'auto' }}>
-                    <a href={data.bookingInfo?.offlineButtonLink || 'tel:+919278479456'} className="chevron-button">
+                    <a href={data.bookingInfo?.offlineButtonLink || 'tel:+919811171293'} className="chevron-button">
                       {data.bookingInfo?.offlineButtonText || 'Call Us'} <i className="fa-regular fa-arrow-right"></i>
                     </a>
                   </div>

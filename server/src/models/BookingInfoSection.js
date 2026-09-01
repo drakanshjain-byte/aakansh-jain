@@ -16,7 +16,7 @@ const bookingInfoSectionSchema = new mongoose.Schema(
     },
     offlineAddress: { type: String, default: '' },
     offlineButtonText: { type: String, default: 'Call Us' },
-    offlineButtonLink: { type: String, default: 'tel:+919278479456' },
+    offlineButtonLink: { type: String, default: 'tel:+919811171293' },
 
     onlineHeading: { type: String, default: 'Book Online' },
     onlineDescription: {

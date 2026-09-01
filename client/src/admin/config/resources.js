@@ -32,7 +32,7 @@ export const RESOURCES = [
       { name: 'slug', label: 'Slug', type: 'text', required: true },
       {
         name: 'category', label: 'Category', type: 'select',
-        options: ['Cosmetic Surgery', 'Hand & Reconstructive Surgery', 'Non-Surgical & Aesthetic Treatments'],
+        options: ['Cosmetic Surgery', 'Hand Surgery', 'Reconstructive Surgery'],
       },
       { name: 'shortDesc', label: 'Short Description', type: 'textarea' },
       { name: 'bodyContent', label: 'Full Description (HTML)', type: 'richtext' },
@@ -227,7 +227,7 @@ export const SINGLETONS = [
       { name: 'offlineDescription', label: 'Offline Booking - Card Description', type: 'textarea' },
       { name: 'offlineAddress', label: 'Offline Booking - Clinic Address (shown on the card)', type: 'text' },
       { name: 'offlineButtonText', label: 'Offline Booking - Button Text', type: 'text' },
-      { name: 'offlineButtonLink', label: 'Offline Booking - Button Link (e.g. "tel:+919278479456")', type: 'text' },
+      { name: 'offlineButtonLink', label: 'Offline Booking - Button Link (e.g. "tel:+919811171293")', type: 'text' },
 
       { name: 'onlineHeading', label: 'Online Booking - Card Heading', type: 'text' },
       { name: 'onlineDescription', label: 'Online Booking - Card Description', type: 'textarea' },

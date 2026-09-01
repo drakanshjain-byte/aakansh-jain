@@ -10,7 +10,7 @@ const serviceSchema = new mongoose.Schema(
     // admin panel exposes it as a dropdown on each Service so it's still fully editable.
     category: {
       type: String,
-      enum: ['Cosmetic Surgery', 'Hand & Reconstructive Surgery', 'Non-Surgical & Aesthetic Treatments'],
+      enum: ['Cosmetic Surgery', 'Hand Surgery', 'Reconstructive Surgery'],
       default: 'Cosmetic Surgery',
       trim: true,
     },

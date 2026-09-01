@@ -35,7 +35,7 @@ export default function Header() {
   }, []);
 
   const logoUrl = '/assets/img/logo/logo.png';
-  const phone = settings?.topContactPhone || '9278479456';
+  const phone = settings?.topContactPhone || '9811171293';
   const ctaText = settings?.headerCtaText || 'Get Appointment';
   const ctaLink = settings?.headerCtaLink || '/contact';
 
@@ -48,10 +48,21 @@ export default function Header() {
           safety net for any narrower window where it still wraps — makes the wrap land as a
           clean, right-aligned second row instead of the default inline-block wrap. */}
       <style>{`
+        /* The stock template's stylesheet (style.css / responsive.css) drags .main-menu
+           left with a negative margin at every desktop width (-100px / -80px / -50px
+           depending on breakpoint) — a leftover from the original layout it was built
+           for. Combined with our right-aligned nav, that just pulls the whole menu away
+           from the phone/CTA block on the right, leaving a large dead gap between them.
+           .main-menu is only used here, so it's safe to zero it out unconditionally —
+           this selector's specificity beats the template's plain ".main-menu" rule at
+           every breakpoint, including inside its own @media blocks. */
+        .header-two .second-menu .main-menu {
+          margin-left: 0 !important;
+        }
         .header-two .second-menu .main-menu ul {
-          display: flex;
+          display: flex !important;
           flex-wrap: wrap;
-          justify-content: flex-end;
+          justify-content: flex-end !important;
           row-gap: 6px;
         }
         .header-two .second-menu .main-menu ul li {
@@ -84,9 +95,15 @@ export default function Header() {
                 </div>
               </div>
               <div className="col-xl-7 col-lg-7">
-                <div className="main-menu text-right">
+                {/* marginLeft/display/justifyContent set inline (not just via the <style>
+                    block below) because the stock stylesheet's ".main-menu { margin-left:
+                    -100px }" and its default inline-block <ul> were still winning over the
+                    scoped CSS rules in some builds — inline styles can't be beaten by any
+                    external stylesheet, so this guarantees the nav sits flush against the
+                    phone/CTA block on the right instead of stranding it behind a dead gap. */}
+                <div className="main-menu text-right" style={{ marginLeft: 0 }}>
                   <nav id="mobile-menu">
-                    <ul>
+                    <ul style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-end', rowGap: '6px', margin: 0, padding: 0 }}>
                       {navItems
                         .filter((n) => !n.parentId)
                         .map((item) =>

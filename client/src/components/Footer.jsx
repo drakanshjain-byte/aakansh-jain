@@ -59,7 +59,7 @@ export default function Footer() {
   const legalLinks = settings?.footerLegalLinks?.length ? settings.footerLegalLinks : DEFAULT_LEGAL_LINKS;
   const instagramUrl = socialLinks.find((s) => s.icon?.includes('instagram'))?.url || '#';
   const contactEmail = settings?.topContactEmail || 'drakanshjain@gmail.com';
-  const phone = settings?.topContactPhone || '9278479456';
+  const phone = settings?.topContactPhone || '9811171293';
   const address = settings?.topContactAddress || 'Dr. Aakansh Jain, Naja Hospital, Shivaji Nagar, Kanpur Road, Jhansi, Uttar Pradesh 284128';
 
   return (

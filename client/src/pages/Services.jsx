@@ -52,6 +52,32 @@ export default function Services() {
 
   const activeMeta = activeCategory !== ALL ? getCategoryMeta(activeCategory) : null;
 
+  // Grouped-by-category view: what a first-time visitor actually wants when browsing "All"
+  // — procedures organised under the area of care they belong to, not one undifferentiated
+  // grid. Only kicks in once services span 2+ categories; with a single category in use,
+  // grouping would just be one section repeating the page title, so we fall back to the
+  // plain grid below instead.
+  const showGrouped = activeCategory === ALL && categoriesInUse.length > 1;
+
+  const renderServiceCard = (s) => (
+    <div className="col-lg-4 col-md-6 col-sm-12" key={s._id}>
+      <Link to={`/services/${s.slug}`} className="services-box mb-30 wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
+        <div className="services-icon">
+          <img src={s.image?.url || '/assets/img/bg/services-01.png'} alt={s.title} />
+        </div>
+        <div className="services-content">
+          <h4>{s.title}</h4>
+          <p>{s.shortDesc}</p>
+          <div className="sbtn">
+            <div className="chevron-button">
+              Read More <i className="fa-regular fa-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+
   return (
     <Layout>
       <PageMeta pageKey="services" fallbackTitle="Services - Natural Cosmetic Surgery Centre" />
@@ -88,31 +114,38 @@ export default function Services() {
             </p>
           )}
 
-          <div className="row">
-            {filteredServices.map((s) => (
-              <div className="col-lg-4 col-md-6 col-sm-12" key={s._id}>
-                <Link to={`/services/${s.slug}`} className="services-box mb-30 wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
-                  <div className="services-icon">
-                    <img src={s.image?.url || '/assets/img/bg/services-01.png'} alt={s.title} />
+          {showGrouped ? (
+            categoriesInUse.map((cat) => {
+              const group = services.filter((s) => (s.category || 'Cosmetic Surgery') === cat.value);
+              if (group.length === 0) return null;
+              return (
+                <div className="svc-cat-group" key={cat.value}>
+                  <div className="svc-cat-group-heading">
+                    <h3>
+                      <i className={cat.icon} style={{ marginRight: 10, color: '#70028F' }}></i>
+                      {cat.label}
+                    </h3>
+                    <p>{cat.blurb}</p>
                   </div>
-                  <div className="services-content">
-                    <h4>{s.title}</h4>
-                    <p>{s.shortDesc}</p>
-                    <div className="sbtn">
-                      <div className="chevron-button">
-                        Read More <i className="fa-regular fa-arrow-right"></i>
-                      </div>
-                    </div>
+                  <div className="row">
+                    {group.map(renderServiceCard)}
                   </div>
-                </Link>
-              </div>
-            ))}
-            {ready && filteredServices.length === 0 && (
+                </div>
+              );
+            })
+          ) : (
+            <div className="row">
+              {filteredServices.map(renderServiceCard)}
+            </div>
+          )}
+
+          {ready && filteredServices.length === 0 && (
+            <div className="row">
               <div className="col-12 text-center" style={{ padding: '40px 0' }}>
                 <p>No services in this category yet. Please check back soon.</p>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 

@@ -35,7 +35,7 @@ const FALLBACK = {
   ],
   paymentHeading: 'Online Payment',
   upiId: 'drakanshjain@okhdfcbank',
-  paymentMobile: '9278479456',
+  paymentMobile: '9811171293',
   paymentNote: 'Kindly note that these are not clickable gateways and the payment has to be made manually through Google Pay or Paytm.',
   paymentQrImage: null,
   paymentDoctorPhoto: null,

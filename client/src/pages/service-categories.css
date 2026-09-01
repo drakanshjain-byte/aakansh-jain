@@ -97,3 +97,34 @@
   margin: 0;
   font-size: 24px;
 }
+
+/* Grouped "All Services" view on the Services page: one section per category, each with
+   its own heading + blurb, so procedures are never shown as one undifferentiated grid. */
+.svc-cat-scope .svc-cat-group {
+  margin-bottom: 50px;
+}
+
+.svc-cat-scope .svc-cat-group:last-child {
+  margin-bottom: 0;
+}
+
+.svc-cat-scope .svc-cat-group-heading {
+  border-bottom: 1px solid #ececec;
+  padding-bottom: 18px;
+  margin-bottom: 30px;
+}
+
+.svc-cat-scope .svc-cat-group-heading h3 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+}
+
+.svc-cat-scope .svc-cat-group-heading p {
+  margin: 0;
+  color: #6b6b6f;
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 720px;
+}

@@ -8,7 +8,7 @@ import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
 import './contact-premium.css';
 
 const FALLBACK_ADDRESS = 'Dr. Aakansh Jain, Naja Hospital, Shivaji Nagar, Kanpur Road, Jhansi, Uttar Pradesh 284128';
-const FALLBACK_PHONE = '9278479456';
+const FALLBACK_PHONE = '9811171293';
 const FALLBACK_EMAIL = 'drakanshjain@gmail.com';
 
 export default function Contact() {

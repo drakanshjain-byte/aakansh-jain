@@ -70,7 +70,7 @@ const consultationSectionSchema = new mongoose.Schema(
     // ---- Online payment ----
     paymentHeading: { type: String, default: 'Online Payment' },
     upiId: { type: String, default: 'drakanshjain@okhdfcbank' },
-    paymentMobile: { type: String, default: '9278479456' },
+    paymentMobile: { type: String, default: '9811171293' },
     paymentNote: {
       type: String,
       default: 'Kindly note that these are not clickable gateways and the payment has to be made manually through Google Pay or Paytm.',
