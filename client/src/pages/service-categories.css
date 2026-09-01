@@ -1,0 +1,99 @@
+/* Shared styling for the service-category UI: the 3 category tiles on the Home page's
+   "Our Services" section, and the category filter tabs + group headings on the Services
+   page. Scoped under .svc-cat-scope so it never touches unrelated .services-box markup
+   elsewhere on the site. Same palette as the rest of the site (#70028F / #200326). */
+
+.svc-cat-scope .svc-cat-tile {
+  position: relative;
+}
+
+.svc-cat-scope .svc-cat-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #70028F;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 30px;
+  z-index: 2;
+}
+
+.svc-cat-scope .svc-cat-tile .services-content h4 {
+  width: 100%;
+}
+
+.svc-cat-scope .svc-cat-tile .services-content p {
+  color: #6b6b6f;
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Filter tabs on the Services listing page */
+.svc-cat-scope .svc-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 10px;
+}
+
+.svc-cat-scope .svc-filter-bar button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  color: #777;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 18px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.svc-cat-scope .svc-filter-bar button:not(:first-child)::before {
+  content: "/";
+  position: absolute;
+  left: -2px;
+  color: #ccc;
+}
+
+.svc-cat-scope .svc-filter-bar button:hover {
+  color: #200326;
+}
+
+.svc-cat-scope .svc-filter-bar button.active {
+  color: #70028F;
+  font-weight: 700;
+}
+
+.svc-cat-scope .svc-filter-intro {
+  text-align: center;
+  color: #6b6b6f;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.svc-cat-scope .svc-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 30px;
+}
+
+.svc-cat-scope .svc-group-heading i {
+  color: #70028F;
+  font-size: 22px;
+}
+
+.svc-cat-scope .svc-group-heading h3 {
+  margin: 0;
+  font-size: 24px;
+}

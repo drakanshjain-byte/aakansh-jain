@@ -3,10 +3,13 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import api from '../../lib/api.js';
 import { getResourceConfig } from '../config/resources.js';
 
-const emptyValueFor = (type) => {
-  if (type === 'boolean') return false;
-  if (type === 'number') return '';
-  if (type === 'tags') return '';
+const emptyValueFor = (field) => {
+  if (field.type === 'boolean') return false;
+  if (field.type === 'number') return '';
+  if (field.type === 'tags') return '';
+  // Default a fresh select to its first option so a new item always saves with a valid
+  // enum value (e.g. Service.category) instead of an empty string.
+  if (field.type === 'select') return field.options?.[0] ?? '';
   return '';
 };
 
@@ -19,7 +22,7 @@ export default function ResourceForm() {
   const [values, setValues] = useState(() => {
     const initial = {};
     config.fields.forEach((f) => {
-      if (f.type !== 'image' && f.type !== 'imageArray') initial[f.name] = emptyValueFor(f.type);
+      if (f.type !== 'image' && f.type !== 'imageArray') initial[f.name] = emptyValueFor(f);
     });
     return initial;
   });
@@ -41,7 +44,7 @@ export default function ResourceForm() {
       config.fields.forEach((f) => {
         if (f.type === 'image' || f.type === 'imageArray') return;
         if (f.type === 'tags') next[f.name] = (data[f.name] || []).join(', ');
-        else next[f.name] = data[f.name] ?? emptyValueFor(f.type);
+        else next[f.name] = data[f.name] ?? emptyValueFor(f);
       });
       setValues(next);
       const imgs = {};

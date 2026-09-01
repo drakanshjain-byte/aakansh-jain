@@ -30,6 +30,10 @@ export const RESOURCES = [
     fields: [
       { name: 'title', label: 'Title', type: 'text', required: true },
       { name: 'slug', label: 'Slug', type: 'text', required: true },
+      {
+        name: 'category', label: 'Category', type: 'select',
+        options: ['Cosmetic Surgery', 'Hand & Reconstructive Surgery', 'Non-Surgical & Aesthetic Treatments'],
+      },
       { name: 'shortDesc', label: 'Short Description', type: 'textarea' },
       { name: 'bodyContent', label: 'Full Description (HTML)', type: 'richtext' },
       { name: 'metaTitle', label: 'Meta Title', type: 'text' },

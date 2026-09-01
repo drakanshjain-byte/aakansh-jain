@@ -8,6 +8,8 @@ import './home-blog.css';
 import './dr-hero.css';
 import './dr-booking.css';
 import './home-booking-info.css';
+import './service-categories.css';
+import { SERVICE_CATEGORIES } from '../lib/serviceCategories.js';
 
 export default function Home() {
   const [data, setData] = useState({
@@ -224,8 +226,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* services */}
-      <section className="services-area p-relative fix">
+      {/* services — one tile per category, so the home page introduces the three areas of
+          care rather than three arbitrary procedures. Each tile links into the Services
+          page pre-filtered to that category. */}
+      <section className="services-area p-relative fix svc-cat-scope">
         <div
           className="container-box pt-60 pb-150"
           style={{ backgroundColor: '#F2DDF3' }}
@@ -240,35 +244,48 @@ export default function Home() {
                     </span>{' '}
                     Our Services
                   </h5>
-                  <h2 className="text-anime-style-3">Excellence In Cosmetic Surgical Care</h2>
+                  <h2 className="text-anime-style-3">Excellence Across Every Area Of Care</h2>
                 </div>
               </div>
             </div>
             <div className="row">
-              {(data.services?.length ? data.services.slice(0, 3) : Array(3).fill(null)).map((s, i) => (
-                <div className="col-lg-4 col-md-6 col-sm-12" key={s?._id || i}>
-                  <Link to={s ? `/services/${s.slug}` : '/services'} className="services-box wow fadeInUp animated" data-animation="fadeInUp" data-delay=".4s">
-                    <div className="services-icon">
-                      <img src={s?.image?.url || `/assets/img/bg/services-0${(i % 3) + 1}.png`} alt="icon" />
-                    </div>
-                    <div className="services-content">
-                      <div className="row">
-                        <div className="col-lg-10">
-                          <h4>{s?.title || 'Facelift Rejuvenation Surgery'}</h4>
-                          <div className="sbtn">
-                            <div className="chevron-button">
-                              Read More <i className="fa-regular fa-arrow-right"></i>
+              {SERVICE_CATEGORIES.map((cat, i) => {
+                const count = data.services?.filter((s) => (s.category || 'Cosmetic Surgery') === cat.value).length || 0;
+                const rep = data.services?.find((s) => (s.category || 'Cosmetic Surgery') === cat.value);
+                return (
+                  <div className="col-lg-4 col-md-6 col-sm-12" key={cat.value}>
+                    <Link
+                      to={`/services?category=${encodeURIComponent(cat.value)}`}
+                      className="services-box svc-cat-tile wow fadeInUp animated"
+                      data-animation="fadeInUp"
+                      data-delay={`.${2 + i}s`}
+                    >
+                      {count > 0 && (
+                        <span className="svc-cat-badge">{count} {count === 1 ? 'Procedure' : 'Procedures'}</span>
+                      )}
+                      <div className="services-icon">
+                        <img src={rep?.image?.url || cat.image} alt={cat.label} />
+                      </div>
+                      <div className="services-content">
+                        <div className="row">
+                          <div className="col-lg-12">
+                            <h4><i className={cat.icon} style={{ marginRight: 10, color: '#70028F' }}></i>{cat.label}</h4>
+                            <p>{cat.blurb}</p>
+                            <div className="sbtn">
+                              <div className="chevron-button">
+                                Explore {cat.shortLabel} <i className="fa-regular fa-arrow-right"></i>
+                              </div>
                             </div>
                           </div>
                         </div>
+                        <div className="animations-01">
+                          <img src="/assets/img/bg/left-ani-02.png" alt="an-img-01" />
+                        </div>
                       </div>
-                      <div className="animations-01">
-                        <img src="/assets/img/bg/left-ani-02.png" alt="an-img-01" />
-                      </div>
-                    </div>
-                  </Link>
-                </div>
-              ))}
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
             <div className="text-center mt-40">
               <Link to="/services" className="btn btn2">

@@ -37,7 +37,7 @@ export default function ResourceList() {
   if (!config) return <p>Unknown resource.</p>;
 
   // Prefer a few informative columns over dumping every field into the table.
-  const previewFields = config.fields.filter((f) => ['text', 'number'].includes(f.type)).slice(0, 3);
+  const previewFields = config.fields.filter((f) => ['text', 'number', 'select'].includes(f.type)).slice(0, 3);
 
   return (
     <div>
