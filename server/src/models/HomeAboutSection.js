@@ -1,17 +1,20 @@
 import mongoose from 'mongoose';
 
-// A single labeled button (used for the two pill CTAs on the home about box,
-// e.g. "Transfer Surgery" / "Support 24/7"). Icon is the theme's own
-// illustrated image for that button, not admin-editable (matches original design).
+// A single labeled button in the "quick links" row on the home about box
+// (e.g. "Know Your Doctor" -> /about). "icon" is a Font Awesome class; leave
+// it blank to render with no icon. Set "link" to empty/omit to render the
+// button as a non-clickable "coming soon" pill instead of a link.
 const buttonSchema = new mongoose.Schema(
-  { text: String, link: String },
+  { text: String, link: String, icon: String },
   { _id: false }
 );
 
 // One line-item in the short checklist under the description
-// (e.g. "Shaping Confidence Through Expert Surgery").
+// (e.g. "Know Your Doctor"). If `link` is set, the whole line renders as a
+// clickable link to that page; if left blank (e.g. a "coming soon" item),
+// it renders as plain, non-clickable text.
 const featurePointSchema = new mongoose.Schema(
-  { text: String },
+  { text: String, link: String },
   { _id: false }
 );
 
@@ -30,13 +33,16 @@ const homeAboutSectionSchema = new mongoose.Schema(
     primaryImage: { url: String, publicId: String },
     secondaryImage: { url: String, publicId: String },
     badgeText: { type: String, default: 'Best Awarded Company' },
-    primaryButton: {
-      type: buttonSchema,
-      default: () => ({ text: 'Transfer Surgery', link: '/services' }),
-    },
-    secondaryButton: {
-      type: buttonSchema,
-      default: () => ({ text: 'Support 24/7', link: '/contact' }),
+    // The row of pill buttons under the description. Renders as a Link for
+    // any item with a "link", and as a non-clickable "coming soon" pill for
+    // any item without one (e.g. "Know The Centre").
+    pillButtons: {
+      type: [buttonSchema],
+      default: () => [
+        { text: 'Know Your Doctor', link: '/about', icon: 'fa-light fa-user-doctor' },
+        { text: 'Know The Centre', link: '/about', icon: 'fa-light fa-building' },
+        { text: 'Know The Services', link: '/services', icon: 'fa-light fa-briefcase-medical' },
+      ],
     },
     featurePoints: {
       type: [featurePointSchema],

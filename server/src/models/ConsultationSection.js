@@ -62,14 +62,14 @@ const consultationSectionSchema = new mongoose.Schema(
     feeRows: {
       type: [feeRowSchema],
       default: () => [
-        { type: 'Video', client: 'New', fee: '₹ 1000', duration: '10 min' },
+        { type: 'Video', client: 'New', fee: '₹ 700', duration: '10 min' },
         { type: 'Video', client: 'Review', fee: '₹ 500', duration: '10 min' },
       ],
     },
 
     // ---- Online payment ----
     paymentHeading: { type: String, default: 'Online Payment' },
-    upiId: { type: String, default: 'drakanshjain@okhdfcbank' },
+    upiId: { type: String, default: 'aakanshjain@sbi' },
     paymentMobile: { type: String, default: '9811171293' },
     paymentNote: {
       type: String,

@@ -9,6 +9,7 @@ import './dr-hero.css';
 import './dr-booking.css';
 import './home-booking-info.css';
 import './service-categories.css';
+import './home-about-buttons.css';
 import { SERVICE_CATEGORIES } from '../lib/serviceCategories.js';
 
 export default function Home() {
@@ -160,30 +161,48 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="col-md-8">
-                      <div className="about-btn pl-20">
-                        <div>
-                          <Link to={data.homeAbout?.primaryButton?.link || '/services'}>
-                            <img src="/assets/img/features/ab-icon-01.svg" alt="img" />{' '}
-                            {data.homeAbout?.primaryButton?.text || 'Transfer Surgery'}
-                          </Link>
-                        </div>
-                        <div>
-                          <Link to={data.homeAbout?.secondaryButton?.link || '/contact'}>
-                            <img src="/assets/img/features/ab-icon-02.svg" alt="img" />{' '}
-                            {data.homeAbout?.secondaryButton?.text || 'Support 24/7'}
-                          </Link>
-                        </div>
+                      <div className="about-btn about-btn-row pl-20">
+                        {(data.homeAbout?.pillButtons?.length
+                          ? data.homeAbout.pillButtons
+                          : [
+                              { text: 'Know Your Doctor', link: '/about', icon: 'fa-light fa-user-doctor' },
+                              { text: 'Know The Centre', link: '/about', icon: 'fa-light fa-building' },
+                              { text: 'Know The Services', link: '/services', icon: 'fa-light fa-briefcase-medical' },
+                            ]
+                        ).map((btn, i) =>
+                          btn.link ? (
+                            <div key={i}>
+                              <Link to={btn.link}>
+                                {btn.icon && <i className={btn.icon}></i>} {btn.text}
+                              </Link>
+                            </div>
+                          ) : (
+                            <div key={i}>
+                              <span className="about-btn-soon" title="Coming soon">
+                                {btn.icon && <i className={btn.icon}></i>} {btn.text}
+                              </span>
+                            </div>
+                          )
+                        )}
                       </div>
 
-                      <ul className="pl-20">
+                      <ul className="pl-20 about-checklist-links">
                         {(data.homeAbout?.featurePoints?.length
                           ? data.homeAbout.featurePoints
                           : [{ text: 'Shaping Confidence Through Expert Surgery' }, { text: 'Discover Beauty Beyond Your Imagination' }]
-                        ).map((p, i) => (
-                          <li key={i}>
-                            <i className="fa-regular fa-arrow-right"></i> {p.text}
-                          </li>
-                        ))}
+                        ).map((p, i) =>
+                          p.link ? (
+                            <li key={i}>
+                              <Link to={p.link}>
+                                <i className="fa-regular fa-arrow-right"></i> {p.text}
+                              </Link>
+                            </li>
+                          ) : (
+                            <li key={i} className="not-linked">
+                              <i className="fa-regular fa-arrow-right"></i> {p.text}
+                            </li>
+                          )
+                        )}
                       </ul>
 
                       <div className="about-outer-btn pl-20">
@@ -237,7 +256,6 @@ export default function Home() {
             </div>
             <div className="row">
               {SERVICE_CATEGORIES.map((cat, i) => {
-                const count = data.services?.filter((s) => (s.category || 'Cosmetic Surgery') === cat.value).length || 0;
                 const rep = data.services?.find((s) => (s.category || 'Cosmetic Surgery') === cat.value);
                 return (
                   <div className="col-lg-4 col-md-6 col-sm-12" key={cat.value}>
@@ -247,9 +265,6 @@ export default function Home() {
                       data-animation="fadeInUp"
                       data-delay={`.${2 + i}s`}
                     >
-                      {count > 0 && (
-                        <span className="svc-cat-badge">{count} {count === 1 ? 'Procedure' : 'Procedures'}</span>
-                      )}
                       <div className="services-icon">
                         <img src={rep?.image?.url || cat.image} alt={cat.label} />
                       </div>

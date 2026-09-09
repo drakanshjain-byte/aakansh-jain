@@ -321,6 +321,22 @@
   color: var(--oc-accent);
 }
 
+.oc-whatsapp-hint {
+  margin: 10px 0 0;
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--oc-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oc-whatsapp-hint i {
+  color: #25D366;
+  font-style: normal;
+}
+
 /* ---------- Side cards: fee table + payment ---------- */
 
 .oc-side {
@@ -420,6 +436,74 @@
   border-radius: 8px;
   padding: 6px;
   background: #fff;
+}
+
+.oc-payment-qr-btn {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.oc-payment-qr-btn img {
+  transition: filter 0.15s ease;
+}
+
+.oc-payment-qr-btn:hover img,
+.oc-payment-qr-btn:focus-visible img {
+  filter: brightness(0.85);
+}
+
+.oc-payment-qr-zoom-icon {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--oc-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  pointer-events: none;
+}
+
+/* ---------- QR zoom popup ---------- */
+
+.oc-qr-modal-overlay {
+  align-items: center;
+}
+
+.oc-qr-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Sora', sans-serif;
+  color: var(--oc-ink, #321537);
+}
+
+.oc-qr-modal img {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border: 1px solid var(--oc-line);
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+
+.oc-qr-modal p {
+  margin: 0;
+  font-size: 14px;
 }
 
 .oc-payment-line {

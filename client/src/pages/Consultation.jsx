@@ -30,11 +30,11 @@ const FALLBACK = {
   feeTableHeading: 'Below given is a comprehensive list of the online consultation fee that hold good with Dr. Aakansh Jain.',
   feeTableNote: 'Review clients should confirm their registration ID No. prior to consultation.',
   feeRows: [
-    { type: 'Video', client: 'New', fee: '₹ 500', duration: '10 min' },
-    { type: 'Video', client: 'Review', fee: '₹ 400', duration: '10 min' },
+    { type: 'Video', client: 'New', fee: '₹ 700', duration: '10 min' },
+    { type: 'Video', client: 'Review', fee: '₹ 500', duration: '10 min' },
   ],
   paymentHeading: 'Online Payment',
-  upiId: 'drakanshjain@okhdfcbank',
+  upiId: 'aakanshjain@sbi',
   paymentMobile: '9811171293',
   paymentNote: 'Kindly note that these are not clickable gateways and the payment has to be made manually through Google Pay or Paytm.',
   paymentQrImage: null,
@@ -101,6 +101,7 @@ export default function Consultation() {
   const [data, setData] = useState(FALLBACK);
   const [ready, setReady] = useState(false);
   const [showConsent, setShowConsent] = useState(false);
+  const [showQrZoom, setShowQrZoom] = useState(false);
   const [form, setForm] = useState({
     name: '',
     mobile: '',
@@ -122,13 +123,42 @@ export default function Consultation() {
 
   useLegacyScripts(ready, [data]);
 
-  // Lock body scroll while the consent popup is open.
+  // Lock body scroll while the consent popup or QR zoom is open.
   useEffect(() => {
-    document.body.style.overflow = showConsent ? 'hidden' : '';
+    document.body.style.overflow = showConsent || showQrZoom ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [showConsent]);
+  }, [showConsent, showQrZoom]);
+
+  // The WhatsApp number the completed booking + payment screenshot should be
+  // shared to. Falls back to the CMS-editable payment mobile number, with a
+  // hardcoded last resort so this never silently breaks. wa.me needs the
+  // country code, so a bare 10-digit Indian number gets "91" prefixed.
+  const whatsappNumber = (() => {
+    const digits = (data.paymentMobile || '9811171293').replace(/\D/g, '');
+    return digits.length === 10 ? `91${digits}` : digits;
+  })();
+
+  const buildWhatsappMessage = () => {
+    const typeLabel = form.appointmentType === 'review' ? 'Review Patient' : 'New Appointment';
+    const lines = [
+      'Hi Dr. Aakansh Jain, I would like to book an online consultation.',
+      '',
+      `Name: ${form.name}`,
+      `Mobile Number: ${form.mobile}`,
+      `Appointment Type: ${typeLabel}`,
+    ];
+    if (form.appointmentType === 'review' && form.reviewRegistrationId) {
+      lines.push(`Registration ID: ${form.reviewRegistrationId}`);
+    }
+    if (form.preferredDate) {
+      lines.push(`Preferred Date: ${form.preferredDate}`);
+    }
+    lines.push(`Message: ${form.message}`);
+    lines.push('', 'I have made the payment — attaching the screenshot here.');
+    return lines.join('\n');
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -137,12 +167,20 @@ export default function Consultation() {
       return;
     }
     setStatus('loading');
+
+    // Keep a record in the admin panel's Form Submissions, same as before —
+    // but don't let a slow/failed save block the WhatsApp handoff below,
+    // since sharing on WhatsApp (with the payment screenshot) is the actual
+    // point of this form now, not the in-app submission.
     try {
       await api.post('/submissions/consultation', form);
-      navigate('/thank-you');
     } catch (err) {
-      setStatus(err.response?.data?.message || 'Something went wrong');
+      // Swallow — WhatsApp handoff still proceeds so the person doesn't get stuck.
     }
+
+    const waLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(buildWhatsappMessage())}`;
+    window.open(waLink, '_blank', 'noopener,noreferrer');
+    navigate('/thank-you');
   };
 
   const qrImage = data.paymentQrImage?.url;
@@ -279,9 +317,13 @@ export default function Consultation() {
                 <button className="oc-submit" type="submit" disabled={status === 'loading'}>
                   <span>{status === 'loading' ? 'Sending...' : data.submitButtonText}</span>
                   <span className="oc-submit-icon">
-                    <i className="fa-light fa-arrow-right-long"></i>
+                    <i className="fa-brands fa-whatsapp"></i>
                   </span>
                 </button>
+                <p className="oc-whatsapp-hint">
+                  <i className="fa-brands fa-whatsapp"></i> This opens WhatsApp with your details filled in —
+                  attach your payment screenshot there and hit send.
+                </p>
                 {status && status !== 'loading' && <p className="oc-status">{status}</p>}
               </form>
             </div>
@@ -329,9 +371,17 @@ export default function Consultation() {
                     </div>
                   )}
                   {qrImage && (
-                    <div className="oc-payment-qr">
+                    <button
+                      type="button"
+                      className="oc-payment-qr oc-payment-qr-btn"
+                      onClick={() => setShowQrZoom(true)}
+                      aria-label="View larger QR code"
+                    >
                       <img src={qrImage} alt="Payment QR code" />
-                    </div>
+                      <span className="oc-payment-qr-zoom-icon">
+                        <i className="fa-light fa-magnifying-glass-plus"></i>
+                      </span>
+                    </button>
                   )}
                 </div>
                 <p className="oc-payment-line">
@@ -357,6 +407,21 @@ export default function Consultation() {
           </div>
         </div>
       </section>
+
+      {/* ---------- QR zoom popup ---------- */}
+      {showQrZoom && qrImage && (
+        <div className="oc-modal-overlay oc-qr-modal-overlay" onClick={() => setShowQrZoom(false)}>
+          <div className="oc-qr-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="oc-modal-close" onClick={() => setShowQrZoom(false)} aria-label="Close">
+              &times;
+            </button>
+            <img src={qrImage} alt="Payment QR code" />
+            <p>
+              UPI ID: <strong>{data.upiId}</strong>
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* ---------- Informed Consent popup ---------- */}
       {showConsent && (

@@ -1,0 +1,48 @@
+/* Overrides for the home "About Us" box pill-button row. The base theme's
+   .about-btn styling (client/public/assets/css/style.css) was built for
+   exactly two buttons at 45% width each; this scopes in flex-wrap + a
+   narrower width so three buttons fit cleanly, and adds a "coming soon"
+   variant for buttons with no link. Scoped to .about-btn-row so it never
+   affects any other .about-btn usage on the site. */
+
+.about-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.about-btn-row > div {
+  width: auto;
+  flex: 1 1 180px;
+}
+
+.about-btn-row a,
+.about-btn-row .about-btn-soon {
+  font-size: 16px;
+  padding: 14px 16px;
+}
+
+.about-btn-row a i,
+.about-btn-row .about-btn-soon i {
+  margin-right: 6px;
+}
+
+.about-btn-soon {
+  background: #B08CBB;
+  padding: 14px;
+  border-radius: 5px;
+  display: block;
+  font-family: 'Marcellus', serif;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+@media (max-width: 767px) {
+  .about-btn-row > div {
+    flex: 1 1 100%;
+  }
+}
