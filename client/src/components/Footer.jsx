@@ -166,7 +166,7 @@ export default function Footer() {
             <div className="col-lg-12 text-center">
               <p className="footer-copyright-text">
                 © {new Date().getFullYear()} Dr. Aakansh Jain. All Rights Reserved. &nbsp;|&nbsp; Designed &amp; Developed by{' '}
-                <a href="https://toflymedia.com" target="_blank" rel="noreferrer">
+                <a href="https://toflymediaa.com" target="_blank" rel="noreferrer">
                   Tofly Media
                 </a>
               </p>
