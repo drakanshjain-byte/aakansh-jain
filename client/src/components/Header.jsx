@@ -73,6 +73,29 @@ export default function Header() {
         .header-two .second-menu .main-menu ul li a {
           font-size: 15px;
         }
+        /* Bigger logo WITHOUT changing the navbar height: transform: scale() is purely
+           visual and doesn't affect layout, so the <img> still occupies its original
+           box and the header keeps exactly the same size. Origin is left-centre so it
+           grows to the right/up/down and stays aligned with the page's left edge. */
+        @media (min-width: 1200px) {
+          .header-two .logo img {
+            transform: scale(1.6);
+            transform-origin: left center;
+          }
+        }
+        /* Keep a clear gap between the enlarged logo and the first menu item by nudging
+           the menu to the right. There's plenty of empty space between the menu and the
+           CTA block, so this doesn't crowd anything and doesn't change the header height.
+           The logo's width differs by breakpoint, hence the different offsets. */
+        @media (min-width: 1200px) {
+          .header-two .second-menu .main-menu { margin-left: 110px !important; }
+        }
+        @media (min-width: 1280px) {
+          .header-two .second-menu .main-menu { margin-left: 25px !important; }
+        }
+        @media (min-width: 1500px) {
+          .header-two .second-menu .main-menu { margin-left: 70px !important; }
+        }
         @media (min-width: 1200px) and (max-width: 1500px) {
           .header-two .second-menu .main-menu ul li {
             margin-left: 14px;
