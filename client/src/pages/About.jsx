@@ -8,10 +8,27 @@ import { useLegacyScripts } from '../hooks/useLegacyScripts.js';
 import './about-premium.css';
 import './premium-sections.css';
 import './profile-credentials.css';
+import './about-bio.css';
+
+// Same text as the defaults in server/src/models/AboutSection.js — only used if the API can't be reached.
+const FALLBACK_BIO_LABEL = 'About Us';
+const FALLBACK_BIO_HEADING = 'Meet Dr. Aakansh Jain';
+const FALLBACK_BIO_TAGLINE =
+  'Cosmetic and plastic and reconstructive surgeon with special interest in hand and micro surgery';
+
+// Renders **bold** segments without using dangerouslySetInnerHTML.
+const renderInline = (text) =>
+  String(text)
+    .split(/(\*\*[^*]+\*\*)/g)
+    .map((part, i) =>
+      part.startsWith('**') && part.endsWith('**') && part.length > 4
+        ? <strong key={i}>{part.slice(2, -2)}</strong>
+        : part
+    );
 
 const DEFAULT_HIGHLIGHTS = [
-  { icon: 'fa-solid fa-user-doctor', text: 'Board-Certified Surgeons' },
-  { icon: 'fa-solid fa-house-medical', text: 'Modern, Safe Facilities' },
+  { icon: 'fa-solid fa-user-doctor', text: 'Board Certified Surgeon' },
+  { icon: 'fa-solid fa-house-medical', text: '10+ Years of Experience' },
   { icon: 'fa-solid fa-heart-pulse', text: 'Personalized Care Plans' },
   { icon: 'fa-solid fa-user-shield', text: 'Privacy & Comfort First' },
 ];
@@ -55,16 +72,41 @@ export default function About() {
             </div>
             <div className="col-lg-7 col-md-12 col-sm-12">
               <div className="about-content s-about-content pl-20 wow fadeInRight animated" data-animation="fadeInRight" data-delay=".4s">
-                <div className="about-title second-title pb-25">
-                  <h5>
-                    <span className="line">
-                      <img src="/assets/img/bg/h-icon.svg" alt="img" />
-                    </span>{' '}
-                    {about?.subheading || 'About Us'}
-                  </h5>
-                  <h2 className="text-anime-style-3">{about?.heading || 'Transform Your Look With Precision'}</h2>
-                </div>
-                <p className="pline">{about?.description || 'Plastic surgery is a specialized branch of medicine focused on restoring, enhancing, and reshaping the body.'}</p>
+                {(() => {
+                  const label = about ? about.bioLabel : FALLBACK_BIO_LABEL;
+                  const heading = about ? about.bioHeading : FALLBACK_BIO_HEADING;
+                  // Brackets are added here, so strip any the admin typed themselves.
+                  const tagline = String((about ? about.bioTagline : FALLBACK_BIO_TAGLINE) || '')
+                    .trim()
+                    .replace(/^\(+\s*/, '')
+                    .replace(/\s*\)+$/, '');
+                  const bioParagraphs = String(about?.bioText || '')
+                    .split(/\n\s*\n/)
+                    .map((p) => p.trim())
+                    .filter(Boolean);
+                  return (
+                    <div className="about-bio">
+                      {label && (
+                        <h5 className="about-bio-label">
+                          <span className="line">
+                            <img src="/assets/img/bg/h-icon.svg" alt="img" />
+                          </span>{' '}
+                          {label}
+                        </h5>
+                      )}
+                      {(heading || tagline) && (
+                        <h2 className="about-bio-heading">
+                          {heading}
+                          {tagline && <span className="about-bio-tagline"> ({tagline})</span>}
+                        </h2>
+                      )}
+                      {bioParagraphs.map((p, i) => (
+                        <p className="about-bio-text" key={i}>{renderInline(p)}</p>
+                      ))}
+                      {about?.bioSignature && <p className="about-bio-signature">{renderInline(about.bioSignature)}</p>}
+                    </div>
+                  );
+                })()}
 
                 <div className="about-highlights">
                   {(about?.highlights?.length ? about.highlights : DEFAULT_HIGHLIGHTS).map((h, i) => (

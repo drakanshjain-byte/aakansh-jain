@@ -25,13 +25,13 @@ export default function ProjectDetail() {
   return (
     <Layout>
       <PageMeta pageKey={`project-${slug}`} fallbackTitle={`${project?.title || 'Project'} - Natural Cosmetic Surgery Centre`} />
-      <Breadcrumb title={project?.title || 'Gallery Details'} />
+      <Breadcrumb title={project?.title || 'Before/After Details'} />
       {!ready ? (
         <LoadingBlock />
       ) : !project ? (
         <div className="container py-5">
           <p>We couldn't find that project.</p>
-          <Link to="/projects" className="btn">Back to Gallery</Link>
+          <Link to="/projects" className="btn">Back to Before/After</Link>
         </div>
       ) : (
         <section className="project-detail pt-145 pb-90">

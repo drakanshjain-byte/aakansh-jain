@@ -17,6 +17,34 @@ const statItemSchema = new mongoose.Schema(
 
 const aboutSectionSchema = new mongoose.Schema(
   {
+    // ---- "Meet Dr." hero block (right side of the top of the /about page).
+    // Replaces the old heading/description pair below, which the page no longer reads.
+    // Separate new fields (instead of reusing heading/description) so the new content shows up
+    // immediately on existing databases, whatever the old fields contain.
+    // In bioText, a blank line starts a new paragraph and **double asterisks** make text bold.
+    bioLabel: { type: String, default: 'About Us' },
+    bioHeading: { type: String, default: 'Meet Dr. Aakansh Jain' },
+    // Shown in brackets right beside the heading. Type it WITHOUT the brackets — they're added
+    // automatically. Clear it to hide.
+    bioTagline: {
+      type: String,
+      default: 'Cosmetic and plastic and reconstructive surgeon with special interest in hand and micro surgery',
+    },
+    bioText: {
+      type: String,
+      default: `Dr. Aakansh Jain, is a passionate, perfectionist and jovial cosmetic and plastic surgeon. He loves to interact with his patients with compassion and empathy. His journey started to become a doctor in his 9th class when he suffered from jaundice and had witnessed the pain of patients when diagnosis went wrong and the joy of being treated successfully. The incident sowed a seed of passion for this noble profession. He dedicated his senior secondary classes to prepare for this dream and to get into the prestigious medical colleges of India. Due to scarcity of medical seats at that time there were times when he lost hopes but at last he made it to vardhaman mahavir medical college, newdelhi. He is the kind of person who never enjoyed classroom lectures but loved bedside teachings and practicals. Due to his nature he learned practical medicine more than theory and had wonderful memories of evening rounds, patient interaction and surgical procedures during his mbbs days.
+
+He was influenced by his Social science teacher who later became an IAS officer, so he started preparation for civil services during his internship but never got over from love for surgery so continued his journey in the medical field. He got selected to pursue general surgery in ram manohar lohia hospital where he learned and researched his thesis on kidney transplantation along with other general surgical procedures. During his residency in general surgery he found his love for plastic and reconstructive surgery. So to evolve in his love he joined the Plastic and reconstructive department of AIIMS Bhopal. And Later selected for MCh course in plastic and reconstructive surgery in prestigious institute King george’s medical university,lucknow.
+
+During his residency he dedicated his time in learning all nuances of reconstructive surgery but also the suffering of burn patient/trauma patients and to help them through his surgical skills he travelled to Ganga hospital, coimbatore utilising his whole year casual leaves to hone his skills. Also during his residency he developed various surgical instruments and techniques which he later published. His motto inspired by Dr. Sabhapathy, chairman of Ganga hospital, “give them (patients) the best surgical care (of the world) at their affordable price”.
+
+Later he went to learn more in aesthetic surgery he went to Dr. Roy Kanjoor’s cosmetic surgery centre, coimbatore and did fellowship under him (2024). He was selected for an international travel fellowship to Vancouver ,Canada by american society for surgery of hand (ASSH) in 2025. Now continuing to serve people of both aesthetic and reconstruction needs.`,
+    },
+    // Optional bold closing line under the bio (e.g. "Dr. Aakansh Jain, Plastic & Cosmetic Surgeon").
+    bioSignature: { type: String, default: '' },
+
+    // Legacy hero fields — no longer shown on the page (replaced by the bio* fields above).
+    // Kept so any existing saved values aren't lost.
     heading: { type: String, default: '' },
     subheading: { type: String, default: '' },
     description: { type: String, default: '' },

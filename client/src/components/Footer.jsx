@@ -14,9 +14,8 @@ const DEFAULT_QUICK_LINKS_COLUMN = {
   heading: 'Quick Links',
   links: [
     { label: 'About Us', url: '/about' },
-    { label: 'Gallery', url: '/projects' },
+    { label: 'Before/After', url: '/projects' },
     { label: 'Blog', url: '/blog' },
-    { label: 'FAQ', url: '/faq' },
     { label: 'Contact Us', url: '/contact' },
   ],
 };

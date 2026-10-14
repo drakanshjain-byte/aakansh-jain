@@ -6,12 +6,19 @@ const serviceSchema = new mongoose.Schema(
     shortDesc: { type: String, default: '' },
     slug: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
     // Which service category this procedure belongs to. Kept as a plain enum (rather than
-    // a separate collection) since the clinic only needs these three fixed groupings — the
+    // a separate collection) since the clinic only needs these six fixed groupings — the
     // admin panel exposes it as a dropdown on each Service so it's still fully editable.
     category: {
       type: String,
-      enum: ['Cosmetic Surgery', 'Hand Surgery', 'Reconstructive Surgery'],
-      default: 'Cosmetic Surgery',
+      enum: [
+        'Cosmetic & Aesthetic Surgery',
+        'Reconstructive Surgery',
+        'Burn & Scar Reconstruction',
+        'Hand & Microsurgery',
+        'Congenital & Pediatric Plastic Surgery',
+        'Hair & Minor Aesthetic Procedures',
+      ],
+      default: 'Cosmetic & Aesthetic Surgery',
       trim: true,
     },
     image: { url: String, publicId: String },

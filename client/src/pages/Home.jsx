@@ -166,7 +166,7 @@ export default function Home() {
                           ? data.homeAbout.pillButtons
                           : [
                               { text: 'Know Your Doctor', link: '/about', icon: 'fa-light fa-user-doctor' },
-                              { text: 'Know The Centre', link: '/about', icon: 'fa-light fa-building' },
+                              { text: 'Know The Centre', link: '/know-the-centre', icon: 'fa-light fa-building' },
                               { text: 'Know The Services', link: '/services', icon: 'fa-light fa-briefcase-medical' },
                             ]
                         ).map((btn, i) =>
@@ -516,14 +516,14 @@ export default function Home() {
                   <span className="line">
                     <img src="/assets/img/bg/h-icon.svg" alt="img" />
                   </span>{' '}
-                  {data.gallerySection?.eyebrow || 'Gallery'}
+                  {data.gallerySection?.eyebrow || 'Before/After'}
                 </h5>
                 <h2 className="text-anime-style-3">{data.gallerySection?.heading || 'Sculpting Dreams Into Stunning Reality'}</h2>
               </div>
             </div>
             <div className="col-lg-6 col-md-6 p-relative text-right d-none d-lg-block">
               <Link to={data.gallerySection?.buttonLink || '/projects'} className="btn btn2">
-                {data.gallerySection?.buttonText || 'View All Gallery'} <i className="fa-light fa-arrow-right-long"></i>
+                {data.gallerySection?.buttonText || 'View All Before/After'} <i className="fa-light fa-arrow-right-long"></i>
               </Link>
             </div>
           </div>

@@ -32,7 +32,14 @@ export const RESOURCES = [
       { name: 'slug', label: 'Slug', type: 'text', required: true },
       {
         name: 'category', label: 'Category', type: 'select',
-        options: ['Cosmetic Surgery', 'Hand Surgery', 'Reconstructive Surgery'],
+        options: [
+          'Cosmetic & Aesthetic Surgery',
+          'Reconstructive Surgery',
+          'Burn & Scar Reconstruction',
+          'Hand & Microsurgery',
+          'Congenital & Pediatric Plastic Surgery',
+          'Hair & Minor Aesthetic Procedures',
+        ],
       },
       { name: 'shortDesc', label: 'Short Description', type: 'textarea' },
       { name: 'bodyContent', label: 'Full Description (HTML)', type: 'richtext' },
@@ -65,7 +72,7 @@ export const RESOURCES = [
     ],
   },
   {
-    key: 'gallery-items', label: 'Gallery / Before-After', api: '/gallery-items', imageField: 'image',
+    key: 'gallery-items', label: 'Before/After', api: '/gallery-items', imageField: 'image',
     fields: [
       { name: 'category', label: 'Category', type: 'text' },
       { name: 'order', label: 'Order', type: 'number' },
@@ -107,15 +114,6 @@ export const RESOURCES = [
     ],
   },
   {
-    key: 'faq-items', label: 'FAQ Items', api: '/faq-items',
-    fields: [
-      { name: 'question', label: 'Question', type: 'text', required: true },
-      { name: 'answer', label: 'Answer', type: 'textarea', required: true },
-      { name: 'page', label: 'Page (home / services / team / faq)', type: 'text' },
-      { name: 'order', label: 'Order', type: 'number' },
-    ],
-  },
-  {
     key: 'nav-items', label: 'Nav Menu', api: '/nav-items',
     fields: [
       { name: 'label', label: 'Label', type: 'text', required: true },
@@ -152,9 +150,11 @@ export const SINGLETONS = [
   {
     key: 'about-section', label: 'About Page - Content (/about only)', api: '/about-section',
     fields: [
-      { name: 'subheading', label: 'Small Badge Label (e.g. "Top choice for cosmetic surgery treatments")', type: 'text' },
-      { name: 'heading', label: 'Main Heading', type: 'text' },
-      { name: 'description', label: 'Intro Description', type: 'textarea' },
+      { name: 'bioLabel', label: 'Small Label above the heading (e.g. "About Us")', type: 'text' },
+      { name: 'bioHeading', label: 'Doctor Heading (e.g. "Meet Dr. Aakansh Jain")', type: 'text' },
+      { name: 'bioTagline', label: 'Text shown in brackets beside the heading — type it WITHOUT brackets, they are added for you (leave empty to hide)', type: 'text' },
+      { name: 'bioText', label: 'Doctor Bio — leave a blank line between paragraphs; put **double asterisks** around words to make them bold', type: 'textarea' },
+      { name: 'bioSignature', label: 'Bold Closing Line under the bio (optional — leave empty to hide)', type: 'text' },
       { name: 'images', label: 'Photos', type: 'imageArray' },
       { name: 'badgeText', label: 'Floating Badge Text (short, sits on the photo)', type: 'text' },
       { name: 'highlights', label: 'Highlight Chips (JSON array: icon + text)', type: 'json' },
@@ -189,12 +189,31 @@ export const SINGLETONS = [
     ],
   },
   {
-    key: 'gallery-section', label: 'Home Page - Gallery Heading (/ only)', api: '/gallery-section',
+    key: 'gallery-section', label: 'Home Page - Before/After Heading (/ only)', api: '/gallery-section',
     fields: [
-      { name: 'eyebrow', label: 'Small Eyebrow Label (e.g. "Gallery")', type: 'text' },
+      { name: 'eyebrow', label: 'Small Eyebrow Label (e.g. "Before/After")', type: 'text' },
       { name: 'heading', label: 'Main Heading', type: 'text' },
-      { name: 'buttonText', label: '"View All Gallery" Button Text', type: 'text' },
-      { name: 'buttonLink', label: '"View All Gallery" Button Link', type: 'text' },
+      { name: 'buttonText', label: '"View All Before/After" Button Text', type: 'text' },
+      { name: 'buttonLink', label: '"View All Before/After" Button Link', type: 'text' },
+    ],
+  },
+  {
+    key: 'centre-page', label: 'Know The Centre Page (/know-the-centre)', api: '/centre-page',
+    fields: [
+      { name: 'welcomeHeading', label: 'Top Heading (e.g. "Welcome To Natural Cosmetic Surgery Centre")', type: 'text' },
+      { name: 'welcomeText', label: 'Top Intro Text (optional — leave a blank line between paragraphs; leave empty to show only the heading)', type: 'textarea' },
+      { name: 'images', label: 'Photos (shown stacked on the left, top to bottom — delete with × and upload new ones)', type: 'imageArray' },
+      { name: 'aimHeading', label: 'Aim - Heading', type: 'text' },
+      { name: 'aimText', label: 'Aim - Text', type: 'textarea' },
+      { name: 'missionHeading', label: 'Mission - Heading', type: 'text' },
+      { name: 'missionText', label: 'Mission - Text', type: 'textarea' },
+      { name: 'visionHeading', label: 'Vision - Heading', type: 'text' },
+      { name: 'visionText', label: 'Vision - Text', type: 'textarea' },
+      { name: 'buttonText', label: 'Button Text (e.g. "Connect With Us" — clear to hide the button)', type: 'text' },
+      { name: 'buttonLink', label: 'Button Link (e.g. /contact)', type: 'text' },
+      { name: 'valuesHeading', label: 'Values Section - Heading (e.g. "Our Values")', type: 'text' },
+      { name: 'valuesIntro', label: 'Values Section - Intro Line (optional)', type: 'text' },
+      { name: 'values', label: 'Values (JSON array: [{ "icon": "fa-light fa-heart-pulse", "label": "Integrity" }] — icon is a Font Awesome class. The whole Values section stays hidden while this list is empty)', type: 'json' },
     ],
   },
   {
@@ -339,6 +358,13 @@ export const SINGLETONS = [
     ],
   },
   {
+    key: 'page-meta-centre', label: 'Browser Tab Title - Know The Centre Page', api: '/page-meta/centre',
+    fields: [
+      { name: 'title', label: 'Browser Tab Title', type: 'text' },
+      { name: 'metaDescription', label: 'Meta Description (shown in Google search results)', type: 'textarea' },
+    ],
+  },
+  {
     key: 'page-meta-services', label: 'Browser Tab Title - Services Page', api: '/page-meta/services',
     fields: [
       { name: 'title', label: 'Browser Tab Title', type: 'text' },
@@ -346,7 +372,7 @@ export const SINGLETONS = [
     ],
   },
   {
-    key: 'page-meta-projects', label: 'Browser Tab Title - Gallery Page', api: '/page-meta/projects',
+    key: 'page-meta-projects', label: 'Browser Tab Title - Before/After Page', api: '/page-meta/projects',
     fields: [
       { name: 'title', label: 'Browser Tab Title', type: 'text' },
       { name: 'metaDescription', label: 'Meta Description (shown in Google search results)', type: 'textarea' },
@@ -354,13 +380,6 @@ export const SINGLETONS = [
   },
   {
     key: 'page-meta-blog', label: 'Browser Tab Title - Blog Page', api: '/page-meta/blog',
-    fields: [
-      { name: 'title', label: 'Browser Tab Title', type: 'text' },
-      { name: 'metaDescription', label: 'Meta Description (shown in Google search results)', type: 'textarea' },
-    ],
-  },
-  {
-    key: 'page-meta-faq', label: 'Browser Tab Title - FAQ Page', api: '/page-meta/faq',
     fields: [
       { name: 'title', label: 'Browser Tab Title', type: 'text' },
       { name: 'metaDescription', label: 'Meta Description (shown in Google search results)', type: 'textarea' },

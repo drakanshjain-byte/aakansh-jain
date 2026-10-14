@@ -4,13 +4,13 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 // Public pages
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
+import KnowTheCentre from './pages/KnowTheCentre.jsx';
 import Services from './pages/Services.jsx';
 import ServiceDetail from './pages/ServiceDetail.jsx';
 import Projects from './pages/Projects.jsx';
 import ProjectDetail from './pages/ProjectDetail.jsx';
 import Blog from './pages/Blog.jsx';
 import BlogDetails from './pages/BlogDetails.jsx';
-import Faq from './pages/Faq.jsx';
 import Contact from './pages/Contact.jsx';
 import Consultation from './pages/Consultation.jsx';
 import ThankYou from './pages/ThankYou.jsx';
@@ -34,13 +34,13 @@ export default function App() {
       {/* Public site */}
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
+      <Route path="/know-the-centre" element={<KnowTheCentre />} />
       <Route path="/services" element={<Services />} />
       <Route path="/services/:slug" element={<ServiceDetail />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/projects/:slug" element={<ProjectDetail />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogDetails />} />
-      <Route path="/faq" element={<Faq />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/online-consultation" element={<Consultation />} />
       <Route path="/thank-you" element={<ThankYou />} />

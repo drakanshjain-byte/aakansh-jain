@@ -40,7 +40,7 @@ const homeAboutSectionSchema = new mongoose.Schema(
       type: [buttonSchema],
       default: () => [
         { text: 'Know Your Doctor', link: '/about', icon: 'fa-light fa-user-doctor' },
-        { text: 'Know The Centre', link: '/about', icon: 'fa-light fa-building' },
+        { text: 'Know The Centre', link: '/know-the-centre', icon: 'fa-light fa-building' },
         { text: 'Know The Services', link: '/services', icon: 'fa-light fa-briefcase-medical' },
       ],
     },
