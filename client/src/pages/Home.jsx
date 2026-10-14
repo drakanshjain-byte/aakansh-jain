@@ -185,44 +185,6 @@ export default function Home() {
                           )
                         )}
                       </div>
-
-                      <ul className="pl-20 about-checklist-links">
-                        {(data.homeAbout?.featurePoints?.length
-                          ? data.homeAbout.featurePoints
-                          : [{ text: 'Shaping Confidence Through Expert Surgery' }, { text: 'Discover Beauty Beyond Your Imagination' }]
-                        ).map((p, i) =>
-                          p.link ? (
-                            <li key={i}>
-                              <Link to={p.link}>
-                                <i className="fa-regular fa-arrow-right"></i> {p.text}
-                              </Link>
-                            </li>
-                          ) : (
-                            <li key={i} className="not-linked">
-                              <i className="fa-regular fa-arrow-right"></i> {p.text}
-                            </li>
-                          )
-                        )}
-                      </ul>
-
-                      <div className="about-outer-btn pl-20">
-                        <div>
-                          <Link to={data.homeAbout?.ctaLink || '/about'} className="btn mr-15">
-                            {data.homeAbout?.ctaText || 'Read More'} <i className="fa-light fa-arrow-right-long"></i>
-                          </Link>
-                        </div>
-                        <div className="review">
-                          <div className="icon">
-                            <img src="/assets/img/features/ab-icon-03.svg" alt="shape" />
-                          </div>
-                          <div className="text">
-                            <div className="star">
-                              {data.homeAbout?.ratingValue || '4.9'}/ <img src="/assets/img/features/start-s.png" alt="shape" />
-                            </div>
-                            <p>{data.homeAbout?.ratingText || '100+ 5star'}</p>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
